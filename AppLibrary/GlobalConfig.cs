@@ -4,32 +4,38 @@ using System.Configuration;
 
 namespace AppLibrary
 {
-    public class GlobalConfig
+    public static class GlobalConfig
     {
 
         /// <summary>
         /// will not work till .NET 4.6
         /// </summary>
-        public static List<IDataConnection> Connections { get; private set; } = new List<IDataConnection>();
+        public static IDataConnection Connection { get; private set; }
 
-        public static void InitializeConnections(bool databese, bool textFiles)
+        public static void InitializeConnection(DataStorageType _DataStorageType)
         {
 
-            if (databese)
+
+            switch (_DataStorageType)
             {
 
-                SqlConnector sql = new SqlConnector();
-                Connections.Add(sql);
+                case DataStorageType.SQL:
+                    SqlConnector _SQL = new SqlConnector();
+                    Connection = _SQL;
+                    break;
+
+                case DataStorageType.TextFile:
+                    TextConnector _Text = new TextConnector();
+                    Connection = _Text;
+                    break;
+
+                default:
+                    break;
+
 
             }
 
-            if (textFiles)
-            {
-
-                TextConnector txt = new TextConnector();
-                Connections.Add(txt);
-
-            }
+         
 
 
         }

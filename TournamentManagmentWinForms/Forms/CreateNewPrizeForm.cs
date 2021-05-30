@@ -33,12 +33,8 @@ namespace TournamentManagmentWinForms.Forms
                     PrizeAmount_TextBox.Text,
                     PrizePercentage_TextBox.Text);
 
-                foreach (IDataConnection db in GlobalConfig.Connections)
-                {
+                GlobalConfig.Connection.CreatePrize(model);
 
-                    db.CreatePrize(model);
-
-                }
 
             }
             else

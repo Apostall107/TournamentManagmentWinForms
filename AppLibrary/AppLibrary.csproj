@@ -51,6 +51,7 @@
     <Compile Include="Connections\IDataConnection.cs" />
     <Compile Include="Connections\SqlConnector.cs" />
     <Compile Include="Connections\TextConnector.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="GlobalConfig.cs" />
     <Compile Include="Models\MatchupEntryModel.cs" />
     <Compile Include="Models\MatchupModel.cs" />
