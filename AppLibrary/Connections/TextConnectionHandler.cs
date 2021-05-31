@@ -51,7 +51,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
                 p.PlaceNumber = int.Parse(cols[1]);
                 p.PlaceName = cols[2];
                 p.PrizeAmount = decimal.Parse(cols[3]);
-                p.PrizePercentage = double.Parse(cols[1]);
+                p.PrizePercentage = double.Parse(cols[4]);
                 output.Add(p);
 
             }

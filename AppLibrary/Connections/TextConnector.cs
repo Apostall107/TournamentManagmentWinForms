@@ -18,11 +18,23 @@ namespace AppLibrary.Connections
 
         public Models.PrizeModel CreatePrize(Models.PrizeModel model)
         {
-           List<Models.PrizeModel> prizes  =  PrizesFile.FullTxtFilePath().LoadFile().ConvertToPrizeModels();//load file and convert it to List
 
-            int currentID = prizes.OrderByDescending(x => x.ID).First().ID + 1;  // incrementation of ID
+            int currentID = 1;
+
+
+            List<Models.PrizeModel> prizes = PrizesFile.FullTxtFilePath().LoadFile().ConvertToPrizeModels();//load file and convert it to List
+
+            if (prizes.Count > 0)
+            {
+                currentID = prizes.OrderByDescending(x => x.ID).First().ID + 1;  // incrementation of ID
+            }
+
+            model.ID = currentID;
+
 
             prizes.Add(model);//add new recorn with incremented ID
+
+            prizes.SaveToPrizeFile(PrizesFile);
 
             return model;
         }
