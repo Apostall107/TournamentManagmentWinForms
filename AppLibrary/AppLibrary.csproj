@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Connections\IDataConnection.cs" />
     <Compile Include="Connections\SqlConnector.cs" />
+    <Compile Include="Connections\TextConnectionHandler.cs" />
     <Compile Include="Connections\TextConnector.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GlobalConfig.cs" />
