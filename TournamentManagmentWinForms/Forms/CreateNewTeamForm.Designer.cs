@@ -44,10 +44,10 @@ namespace TournamentManagmentWinForms.Forms
             this.DeleteSelected_Button = new System.Windows.Forms.Button();
             this.CreateTeam_Button = new System.Windows.Forms.Button();
             this.AddNewMember_GroupBox = new System.Windows.Forms.GroupBox();
-            this.FistName_TextBox = new System.Windows.Forms.TextBox();
-            this.LastName_TextBox = new System.Windows.Forms.TextBox();
+            this.PhoneNum_TextBox = new System.Windows.Forms.TextBox();
             this.Email_TextBox = new System.Windows.Forms.TextBox();
-            this.Cellphone_TextBox = new System.Windows.Forms.TextBox();
+            this.LastName_TextBox = new System.Windows.Forms.TextBox();
+            this.FirstName_TextBox = new System.Windows.Forms.TextBox();
             this.AddNewMember_GroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -148,6 +148,7 @@ namespace TournamentManagmentWinForms.Forms
             this.CreateMember_Button.TabIndex = 13;
             this.CreateMember_Button.Text = "Create Member";
             this.CreateMember_Button.UseVisualStyleBackColor = true;
+            this.CreateMember_Button.Click += new System.EventHandler(this.CreateMember_Button_Click);
             // 
             // DeleteSelected_Button
             // 
@@ -169,11 +170,11 @@ namespace TournamentManagmentWinForms.Forms
             // 
             // AddNewMember_GroupBox
             // 
-            this.AddNewMember_GroupBox.Controls.Add(this.Cellphone_TextBox);
+            this.AddNewMember_GroupBox.Controls.Add(this.PhoneNum_TextBox);
             this.AddNewMember_GroupBox.Controls.Add(this.Email_TextBox);
             this.AddNewMember_GroupBox.Controls.Add(this.LastName_TextBox);
             this.AddNewMember_GroupBox.Controls.Add(this.CreateMember_Button);
-            this.AddNewMember_GroupBox.Controls.Add(this.FistName_TextBox);
+            this.AddNewMember_GroupBox.Controls.Add(this.FirstName_TextBox);
             this.AddNewMember_GroupBox.Controls.Add(this.FirstName_Label);
             this.AddNewMember_GroupBox.Controls.Add(this.LastName_Label);
             this.AddNewMember_GroupBox.Controls.Add(this.Email_Label);
@@ -185,19 +186,12 @@ namespace TournamentManagmentWinForms.Forms
             this.AddNewMember_GroupBox.TabStop = false;
             this.AddNewMember_GroupBox.Text = "Add New Member";
             // 
-            // FistName_TextBox
+            // PhoneNum_TextBox
             // 
-            this.FistName_TextBox.Location = new System.Drawing.Point(110, 28);
-            this.FistName_TextBox.Name = "FistName_TextBox";
-            this.FistName_TextBox.Size = new System.Drawing.Size(198, 29);
-            this.FistName_TextBox.TabIndex = 9;
-            // 
-            // LastName_TextBox
-            // 
-            this.LastName_TextBox.Location = new System.Drawing.Point(110, 63);
-            this.LastName_TextBox.Name = "LastName_TextBox";
-            this.LastName_TextBox.Size = new System.Drawing.Size(198, 29);
-            this.LastName_TextBox.TabIndex = 10;
+            this.PhoneNum_TextBox.Location = new System.Drawing.Point(110, 133);
+            this.PhoneNum_TextBox.Name = "PhoneNum_TextBox";
+            this.PhoneNum_TextBox.Size = new System.Drawing.Size(198, 29);
+            this.PhoneNum_TextBox.TabIndex = 12;
             // 
             // Email_TextBox
             // 
@@ -206,12 +200,19 @@ namespace TournamentManagmentWinForms.Forms
             this.Email_TextBox.Size = new System.Drawing.Size(198, 29);
             this.Email_TextBox.TabIndex = 11;
             // 
-            // Cellphone_TextBox
+            // LastName_TextBox
             // 
-            this.Cellphone_TextBox.Location = new System.Drawing.Point(110, 133);
-            this.Cellphone_TextBox.Name = "Cellphone_TextBox";
-            this.Cellphone_TextBox.Size = new System.Drawing.Size(198, 29);
-            this.Cellphone_TextBox.TabIndex = 12;
+            this.LastName_TextBox.Location = new System.Drawing.Point(110, 63);
+            this.LastName_TextBox.Name = "LastName_TextBox";
+            this.LastName_TextBox.Size = new System.Drawing.Size(198, 29);
+            this.LastName_TextBox.TabIndex = 10;
+            // 
+            // FirstName_TextBox
+            // 
+            this.FirstName_TextBox.Location = new System.Drawing.Point(110, 28);
+            this.FirstName_TextBox.Name = "FirstName_TextBox";
+            this.FirstName_TextBox.Size = new System.Drawing.Size(198, 29);
+            this.FirstName_TextBox.TabIndex = 9;
             // 
             // CreateNewTeamForm
             // 
@@ -256,9 +257,9 @@ namespace TournamentManagmentWinForms.Forms
         private System.Windows.Forms.Button DeleteSelected_Button;
         private System.Windows.Forms.Button CreateTeam_Button;
         private System.Windows.Forms.GroupBox AddNewMember_GroupBox;
-        private System.Windows.Forms.TextBox Cellphone_TextBox;
+        private System.Windows.Forms.TextBox PhoneNum_TextBox;
         private System.Windows.Forms.TextBox Email_TextBox;
         private System.Windows.Forms.TextBox LastName_TextBox;
-        private System.Windows.Forms.TextBox FistName_TextBox;
+        private System.Windows.Forms.TextBox FirstName_TextBox;
     }
 }

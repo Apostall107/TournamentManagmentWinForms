@@ -36,27 +36,27 @@ namespace AppLibrary.Models
 
         }
 
-        public PrizeModel(string PlaceNumber, string PlaceName, string PrizeAmount, string PrizePercentage)
+        public PrizeModel(string placeNumber, string placeName, string prizeAmount, string prizePercentage)
         {
 
 
-            this.PlaceName = PlaceName;
+            this.PlaceName = placeName;
 
 
             int _PlaceNumberValue = 0;
-            int.TryParse(PlaceNumber, out _PlaceNumberValue);
+            int.TryParse(placeNumber, out _PlaceNumberValue);
 
             this.PlaceNumber = _PlaceNumberValue;
 
 
             decimal _PrizeAmountValue = 0;
-            decimal.TryParse(PrizeAmount, out _PrizeAmountValue);
+            decimal.TryParse(prizeAmount, out _PrizeAmountValue);
 
             this.PrizeAmount = _PrizeAmountValue;
 
 
             double _PrizePercentageValue = 0;
-            double.TryParse(PrizePercentage, out _PrizePercentageValue);
+            double.TryParse(prizePercentage, out _PrizePercentageValue);
 
             this.PrizePercentage = _PrizePercentageValue;
 

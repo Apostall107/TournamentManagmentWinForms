@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AppLibrary.Connections.TextConnectionHandler;
+using AppLibrary.Models;
 
 namespace AppLibrary.Connections
 {
@@ -15,6 +16,10 @@ namespace AppLibrary.Connections
 
         private const string PrizesFile = "PrizeModels.csv";
 
+        public PersonModel CreatePerson(PersonModel model)
+        {
+            throw new NotImplementedException();
+        }
 
         public Models.PrizeModel CreatePrize(Models.PrizeModel model)
         {

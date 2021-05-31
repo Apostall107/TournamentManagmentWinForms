@@ -6,15 +6,28 @@ using System.Threading.Tasks;
 
 namespace AppLibrary.Models
 {
-    class PersonModel
+    public class PersonModel
     {
+        public int ID { get; set; }
+        public string FirstName { get; set; }
 
-        public string FistName { get; set; }
         public string LastName { get; set; }
 
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
 
-        public string CellphoneNumber { get; set; }
+        public string PhoneNum { get; set; }
+
+
+        public string FullName
+        {
+            get
+            {
+                return $"{ FirstName } { LastName }";
+            }
+        }
+
+
+
 
 
     }

@@ -7,6 +7,7 @@ namespace AppLibrary.Connections
     {
 
         PrizeModel CreatePrize(PrizeModel model);
+        PersonModel CreatePerson(PersonModel model);
 
     }
 }
