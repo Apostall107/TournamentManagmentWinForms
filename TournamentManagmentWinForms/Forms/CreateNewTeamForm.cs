@@ -23,7 +23,7 @@ namespace TournamentManagmentWinForms.Forms
         {
             if (ValidateForm())
             {
-                AppLibrary.Models.PersonModel p = new  AppLibrary.Models.PersonModel();
+                AppLibrary.Models.PersonModel p = new AppLibrary.Models.PersonModel();
 
                 p.FirstName = FirstName_TextBox.Text;
                 p.LastName = LastName_TextBox.Text;
@@ -32,17 +32,17 @@ namespace TournamentManagmentWinForms.Forms
 
                 GlobalConfig.Connection.CreatePerson(p);
 
+                
+                
+                
+                ResetMemberBoxes();
 
 
-                FirstName_TextBox.Text = "";
-                LastName_TextBox.Text = "";
-                Email_TextBox.Text = "";
-                PhoneNum_TextBox.Text = "";
             }
 
             else
             {
-                MessageBox.Show("You need to fill in all of the fields.");
+                MessageBox.Show("Invalid data was entered! \nTry again.");
             }
         }
 
@@ -66,6 +66,25 @@ namespace TournamentManagmentWinForms.Forms
             }
 
             return true;
+
+
         }
+
+
+
+        private void ResetMemberBoxes()
+        {
+
+            FirstName_TextBox.Text = "";
+            LastName_TextBox.Text = "";
+            Email_TextBox.Text = "";
+            PhoneNum_TextBox.Text = "";
+
+        }
+
+
+
+
+
     }
 }

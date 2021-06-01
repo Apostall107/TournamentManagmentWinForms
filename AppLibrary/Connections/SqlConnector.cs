@@ -38,7 +38,7 @@ namespace AppLibrary.Connections
 
         }
 
-        //TODO  - Make the CreatePrize method  to save data
+    
         /// <summary>
         /// Saves a new proze to the database
         /// </summary>
