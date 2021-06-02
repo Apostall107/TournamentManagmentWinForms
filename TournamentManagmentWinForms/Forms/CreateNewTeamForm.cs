@@ -26,7 +26,7 @@ namespace TournamentManagmentWinForms.Forms
             InitializeComponent();
 
 #if DEBUG
-            CreateSampleData();
+            //CreateSampleData();
 #endif
 
 
@@ -37,14 +37,14 @@ namespace TournamentManagmentWinForms.Forms
 
 
 #if DEBUG
-        private void CreateSampleData()
-        {
-            _AvaliableTeamMember.Add(new PersonModel { FirstName = "Sasha", LastName = "Hryn" });
-            _AvaliableTeamMember.Add(new PersonModel { FirstName = "Sasha2", LastName = "Hryn2" });
+        //private void CreateSampleData()
+        //{
+        //    _AvaliableTeamMember.Add(new PersonModel { FirstName = "Sasha", LastName = "Hryn" });
+        //    _AvaliableTeamMember.Add(new PersonModel { FirstName = "Sasha2", LastName = "Hryn2" });
 
-            _SelectedTeamMember.Add(new PersonModel { FirstName = "NotSasha", LastName = "NotHryn" });
-            _SelectedTeamMember.Add(new PersonModel { FirstName = "NotSasha2", LastName = "NotHryn2" });
-        }
+        //    _SelectedTeamMember.Add(new PersonModel { FirstName = "NotSasha", LastName = "NotHryn" });
+        //    _SelectedTeamMember.Add(new PersonModel { FirstName = "NotSasha2", LastName = "NotHryn2" });
+        //}
 
 #endif
 

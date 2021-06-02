@@ -42,8 +42,8 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
 
         #region ConvertTo...Models
-        
-        private const char separator = '|';
+
+        private const string separator = ",|—";
 
         public static List<Models.PrizeModel> ConvertToPrizeModels(this List<string> lines)
         {
@@ -53,7 +53,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
             foreach (string line in lines)
             {
 
-                string[] column = line.Split(separator);
+                string[] column = line.Split(separator[0]);
 
                 Models.PrizeModel p = new Models.PrizeModel();
                 p.ID = int.Parse(column[0]);
@@ -73,7 +73,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
             foreach (string line in lines)
             {
-                string[] column = line.Split(separator);
+                string[] column = line.Split(separator[0]);
 
                 Models.PersonModel person = new Models.PersonModel
                 {
@@ -90,6 +90,53 @@ namespace AppLibrary.Connections.TextConnectionHandler
             return output;
         }
 
+
+
+
+
+        #region Pipe Separator
+        public static List<Models.TeamModel> ConvertToTeamModels(this List<string> lines, string peopleFileName)
+        {
+            List<Models.TeamModel> output = new List<Models.TeamModel>();
+            List<Models.PersonModel> ppl = peopleFileName.FullTxtFilePath().LoadFile().ConvertToPersonModels();
+
+
+            string[] column;
+
+
+            foreach (string line in lines)
+            {
+                column = line.Split(separator[0]);
+
+                Models.TeamModel team = new Models.TeamModel();
+
+
+                team.ID = int.Parse(column[0]);
+                team.TeamName = column[1];
+
+
+
+                string[] personIDs = column[2].Split(separator[1]);
+
+                foreach (string id in personIDs)
+                {
+
+                    team.TeamMembers.Add(ppl.Where(x => x.ID == int.Parse(id)).First());
+
+
+                }
+
+            }
+
+            return output;
+        }
+
+
+
+        #endregion
+
+
+
         #endregion
 
 
@@ -99,20 +146,19 @@ namespace AppLibrary.Connections.TextConnectionHandler
         public static void SaveToPrizeFile(this List<Models.PrizeModel> models, string fileName)
         {
 
-
             List<string> lines = new List<string>();
 
             foreach (Models.PrizeModel prize in models)
             {
 
                 lines.Add($"{ prize.ID},{prize.PlaceNumber },{ prize.PlaceName},{prize.PrizeAmount},{prize.PrizePercentage}");
-            
+
             }
 
             File.WriteAllLines(fileName.FullTxtFilePath(), lines);
 
         }
-        
+
         public static void SaveToPeopleFile(this List<Models.PersonModel> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -124,9 +170,48 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
             File.WriteAllLines(fileName.FullTxtFilePath(), lines);
         }
+
+        public static void SaveToTeamFile(this List<Models.TeamModel> models, string fileName)
+        {
+            List<string> lines = new List<string>();
+
+            foreach (Models.TeamModel team in models)
+            {
+                lines.Add($"{ team.ID },{ team.TeamName},{ConvertPeopleFileToString(team.TeamMembers) }");
+            }
+
+            File.WriteAllLines(fileName.FullTxtFilePath(), lines);
+        }
+
+
         #endregion
 
+        #region Helper Methods
 
+        private static string ConvertPeopleFileToString(List<Models.PersonModel> ppl)
+        {
+
+            string output = "";
+
+            if (ppl.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (Models.PersonModel person in ppl)
+            {
+
+                output += $" {person.ID}{separator[1]}";
+
+            }
+
+            output = output.Substring(0, output.Length - 1);// save all output string with all length 0 to n-1
+
+            return output;
+        }
+
+
+        #endregion
 
 
 

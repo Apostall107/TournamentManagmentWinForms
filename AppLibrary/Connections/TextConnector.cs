@@ -19,6 +19,7 @@ namespace AppLibrary.Connections
 
         private const string PrizesFile = "PrizeModels.csv";
         private const string PeopleFile = "PersonModels.csv";
+        private const string TeamFile = "TeamModels.csv";
 
         #endregion
 
@@ -72,7 +73,26 @@ namespace AppLibrary.Connections
 
         public TeamModel CreateTeam(TeamModel model)
         {
-            throw new NotImplementedException();
+
+
+            List<Models.TeamModel> teams = TeamFile.FullTxtFilePath().LoadFile().ConvertToTeamModels(PeopleFile);//load file and convert it to List
+
+            int currentID = 1;
+
+
+            if (teams.Count > 0)
+            {
+                currentID = teams.OrderByDescending(x => x.ID).First().ID + 1;  // incrementation of ID
+            }
+
+            model.ID = currentID;
+
+
+            teams.Add(model);//add new recorn with incremented ID
+
+            teams.SaveToTeamFile(TeamFile);
+
+            return model;
         }
 
 
