@@ -1,11 +1,13 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AppLibrary.Connections.TextConnectionHandler;
 using AppLibrary.Models;
+using Dapper;
 
 namespace AppLibrary.Connections
 {
@@ -68,8 +70,17 @@ namespace AppLibrary.Connections
             return model;
         }
 
+        public List<PersonModel> People_GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
 
         #endregion
+
+
+
+
 
 
     }

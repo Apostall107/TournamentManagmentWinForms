@@ -1,7 +1,8 @@
 ﻿using AppLibrary.Models;
 using Dapper;
+using System.Collections.Generic;
 using System.Data;
-
+using System.Linq;
 
 namespace AppLibrary.Connections
 {
@@ -10,10 +11,16 @@ namespace AppLibrary.Connections
 
     public class SqlConnector : IDataConnection
     {
+        private const string db = "TournamentDB";
+
+
+
+
+
         public PersonModel CreatePerson(PersonModel model)
         {
 
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString("TournamentDB")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
             {
 
                 connection.Open();
@@ -38,8 +45,9 @@ namespace AppLibrary.Connections
 
         }
 
-    
 
+    
+        
 
         /// <summary>
         /// Saves a new prize to the database
@@ -49,7 +57,7 @@ namespace AppLibrary.Connections
         public PrizeModel CreatePrize(PrizeModel model)
         {
 
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString("TournamentDB")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
             {
 
                 connection.Open();
@@ -73,6 +81,22 @@ namespace AppLibrary.Connections
             }
 
 
+        }
+
+        public List<PersonModel> People_GetAll()
+        {
+            List<PersonModel> output;
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
+            {
+                connection.Open();
+
+                output = connection.Query<PersonModel>("dbo.spPeople_GetAll").ToList();
+
+            }
+
+
+            return output;
         }
     }
 }

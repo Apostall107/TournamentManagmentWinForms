@@ -9,5 +9,7 @@ namespace AppLibrary.Connections
         PrizeModel CreatePrize(PrizeModel model);
         PersonModel CreatePerson(PersonModel model);
 
+        System.Collections.Generic.List<PersonModel> People_GetAll();
+
     }
 }

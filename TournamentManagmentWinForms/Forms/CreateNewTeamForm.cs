@@ -17,8 +17,8 @@ namespace TournamentManagmentWinForms.Forms
 
 
 
-        private List<PersonModel> _AvaliableTeamMember = new List<PersonModel>();
-        private List<PersonModel> _SelectedTeamMember = new List<PersonModel>();
+        private List<PersonModel> _AvaliableTeamMember = GlobalConfig.Connection.People_GetAll(); //list for drop box
+        private List<PersonModel> _SelectedTeamMember = new List<PersonModel>(); // list for listbox
 
 
         public CreateNewTeamForm()
@@ -27,12 +27,14 @@ namespace TournamentManagmentWinForms.Forms
 
        #if DEBUG
             CreateSampleData();
-
        #endif
+
+
             WireUpLists();
 
         }
        
+
         
         #if DEBUG
         private void CreateSampleData()
@@ -43,6 +45,8 @@ namespace TournamentManagmentWinForms.Forms
             _SelectedTeamMember.Add(new PersonModel { FirstName = "NotSasha", LastName = "NotHryn" });
             _SelectedTeamMember.Add(new PersonModel { FirstName = "NotSasha2", LastName = "NotHryn2" });
         }
+       
+        
         #endif
 
         private void WireUpLists()
