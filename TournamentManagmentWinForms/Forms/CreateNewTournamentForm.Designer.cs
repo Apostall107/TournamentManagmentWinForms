@@ -154,7 +154,7 @@ namespace TournamentManagmentWinForms.Forms
             // ParticipantsTeam_Label
             // 
             this.ParticipantsTeam_Label.AutoSize = true;
-            this.ParticipantsTeam_Label.Location = new System.Drawing.Point(324, 103);
+            this.ParticipantsTeam_Label.Location = new System.Drawing.Point(340, 103);
             this.ParticipantsTeam_Label.Name = "ParticipantsTeam_Label";
             this.ParticipantsTeam_Label.Size = new System.Drawing.Size(139, 21);
             this.ParticipantsTeam_Label.TabIndex = 12;
@@ -163,11 +163,11 @@ namespace TournamentManagmentWinForms.Forms
             // ParticipantsPrize_Label
             // 
             this.ParticipantsPrize_Label.AutoSize = true;
-            this.ParticipantsPrize_Label.Location = new System.Drawing.Point(297, 377);
+            this.ParticipantsPrize_Label.Location = new System.Drawing.Point(384, 377);
             this.ParticipantsPrize_Label.Name = "ParticipantsPrize_Label";
-            this.ParticipantsPrize_Label.Size = new System.Drawing.Size(139, 21);
+            this.ParticipantsPrize_Label.Size = new System.Drawing.Size(51, 21);
             this.ParticipantsPrize_Label.TabIndex = 13;
-            this.ParticipantsPrize_Label.Text = "Participants/Teams";
+            this.ParticipantsPrize_Label.Text = "Prizes";
             // 
             // ParticipantsListBox
             // 
@@ -194,6 +194,7 @@ namespace TournamentManagmentWinForms.Forms
             this.SelectTeam_DropBox.Name = "SelectTeam_DropBox";
             this.SelectTeam_DropBox.Size = new System.Drawing.Size(230, 29);
             this.SelectTeam_DropBox.TabIndex = 16;
+            this.SelectTeam_DropBox.SelectedIndexChanged += new System.EventHandler(this.SelectTeam_DropBox_SelectedIndexChanged);
             // 
             // CreateTeam_LinkLabel
             // 

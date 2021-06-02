@@ -73,7 +73,7 @@ namespace AppLibrary.Connections
 
         public TeamModel CreateTeam(TeamModel model)
         {
-
+            //TODO: need to handle ID 1 team creating only.
 
             List<Models.TeamModel> teams = TeamFile.FullTxtFilePath().LoadFile().ConvertToTeamModels(PeopleFile);//load file and convert it to List
 
@@ -105,8 +105,9 @@ namespace AppLibrary.Connections
             return PeopleFile.FullTxtFilePath().LoadFile().ConvertToPersonModels();
         }
 
-
-
-
+        public List<TeamModel> Teams_GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

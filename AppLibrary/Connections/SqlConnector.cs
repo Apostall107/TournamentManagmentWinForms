@@ -15,7 +15,7 @@ namespace AppLibrary.Connections
 
 
 
-
+        #region Creators
 
         public PersonModel CreatePerson(PersonModel model)
         {
@@ -108,6 +108,10 @@ namespace AppLibrary.Connections
             }
         }
 
+        #endregion
+
+
+        #region Getrers
         public List<PersonModel> People_GetAll()
         {
             List<PersonModel> output;
@@ -123,5 +127,29 @@ namespace AppLibrary.Connections
 
             return output;
         }
+
+        public List<TeamModel> Teams_GetAll()
+        {
+            List<TeamModel> output;
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
+            {
+                connection.Open();
+
+                output = connection.Query<TeamModel>("dbo.spTeams_GetAll").ToList();
+
+                foreach (TeamModel team in output)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@TeamID", team.ID);
+
+                    team.TeamMembers = connection.Query<PersonModel>("spTeamMembers_GetByTeam", p, commandType: CommandType.StoredProcedure).ToList();
+                }
+            }
+
+            return output;
+        }
+        #endregion
+
     }
 }
