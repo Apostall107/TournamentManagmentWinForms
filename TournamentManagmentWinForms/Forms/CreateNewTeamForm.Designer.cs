@@ -48,6 +48,7 @@ namespace TournamentManagmentWinForms.Forms
             this.Email_TextBox = new System.Windows.Forms.TextBox();
             this.LastName_TextBox = new System.Windows.Forms.TextBox();
             this.FirstName_TextBox = new System.Windows.Forms.TextBox();
+            this.AddTeamMember_Button = new System.Windows.Forms.Button();
             this.AddNewMember_GroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,7 +75,7 @@ namespace TournamentManagmentWinForms.Forms
             // SelectTeamMember_Label
             // 
             this.SelectTeamMember_Label.AutoSize = true;
-            this.SelectTeamMember_Label.Location = new System.Drawing.Point(16, 160);
+            this.SelectTeamMember_Label.Location = new System.Drawing.Point(16, 175);
             this.SelectTeamMember_Label.Name = "SelectTeamMember_Label";
             this.SelectTeamMember_Label.Size = new System.Drawing.Size(162, 21);
             this.SelectTeamMember_Label.TabIndex = 4;
@@ -119,7 +120,7 @@ namespace TournamentManagmentWinForms.Forms
             // SelectTeamMember_DropBox
             // 
             this.SelectTeamMember_DropBox.FormattingEnabled = true;
-            this.SelectTeamMember_DropBox.Location = new System.Drawing.Point(20, 184);
+            this.SelectTeamMember_DropBox.Location = new System.Drawing.Point(20, 199);
             this.SelectTeamMember_DropBox.Name = "SelectTeamMember_DropBox";
             this.SelectTeamMember_DropBox.Size = new System.Drawing.Size(217, 29);
             this.SelectTeamMember_DropBox.TabIndex = 10;
@@ -214,12 +215,24 @@ namespace TournamentManagmentWinForms.Forms
             this.FirstName_TextBox.Size = new System.Drawing.Size(198, 29);
             this.FirstName_TextBox.TabIndex = 9;
             // 
+            // AddTeamMember_Button
+            // 
+            this.AddTeamMember_Button.BackColor = System.Drawing.Color.Transparent;
+            this.AddTeamMember_Button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("AddTeamMember_Button.BackgroundImage")));
+            this.AddTeamMember_Button.Location = new System.Drawing.Point(273, 198);
+            this.AddTeamMember_Button.Name = "AddTeamMember_Button";
+            this.AddTeamMember_Button.Size = new System.Drawing.Size(87, 30);
+            this.AddTeamMember_Button.TabIndex = 17;
+            this.AddTeamMember_Button.UseVisualStyleBackColor = false;
+            this.AddTeamMember_Button.Click += new System.EventHandler(this.AddTeamMember_Button_Click);
+            // 
             // CreateNewTeamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(638, 639);
+            this.Controls.Add(this.AddTeamMember_Button);
             this.Controls.Add(this.AddNewMember_GroupBox);
             this.Controls.Add(this.CreateTeam_Button);
             this.Controls.Add(this.DeleteSelected_Button);
@@ -261,5 +274,6 @@ namespace TournamentManagmentWinForms.Forms
         private System.Windows.Forms.TextBox Email_TextBox;
         private System.Windows.Forms.TextBox LastName_TextBox;
         private System.Windows.Forms.TextBox FirstName_TextBox;
+        private System.Windows.Forms.Button AddTeamMember_Button;
     }
 }

@@ -52,17 +52,24 @@ namespace TournamentManagmentWinForms.Forms
         private void WireUpLists()
         {
 
+            SelectTeamMember_DropBox.DataSource = null;// needed to move objectts from box to list and vice verca
+
             SelectTeamMember_DropBox.DataSource = _AvaliableTeamMember;
             SelectTeamMember_DropBox.DisplayMember = "FullName";
+
+
+            TeamMembers_ListBox.DataSource = null;// needed to move objectts from box to list and vice verca
 
             TeamMembers_ListBox.DataSource = _SelectedTeamMember;
             TeamMembers_ListBox.DisplayMember = "FullName";
 
 
+         
 
         }
 
 
+        #region CreateMember_Button_Click
         private void CreateMember_Button_Click(object sender, EventArgs e)
         {
             if (ValidateForm())
@@ -89,7 +96,6 @@ namespace TournamentManagmentWinForms.Forms
                 MessageBox.Show("Invalid data was entered! \nTry again.");
             }
         }
-
         private bool ValidateForm()
         {
             if (FirstName_TextBox.Text.Length == 0)
@@ -113,9 +119,6 @@ namespace TournamentManagmentWinForms.Forms
 
 
         }
-
-
-
         private void ResetMemberBoxes()
         {
 
@@ -126,9 +129,18 @@ namespace TournamentManagmentWinForms.Forms
 
         }
 
+        #endregion
+
+        private void AddTeamMember_Button_Click(object sender, EventArgs e)
+        {
+            PersonModel person = (PersonModel)SelectTeamMember_DropBox.SelectedItem;
+
+            _AvaliableTeamMember.Remove(person); //remove person and add ====>
+            _SelectedTeamMember.Add(person);// ===>  it here <====
 
 
+            WireUpLists();
 
-
+        }
     }
 }

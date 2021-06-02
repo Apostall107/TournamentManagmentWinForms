@@ -118,6 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="AddTeamMember_Button.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAACpSURBVEhL7dTBCcIwFIfxHPToBLqIuId4FocQ15HuIZ2gggOIE+hREfV7hUBJH7WRPA8lH/wO
+        KZT/panL5QbdHReM69MfeuKNFxbywDo/6BUwLRwUN0zQqx1OEcKxphW+doT28q9KdJZ6UDwwg5rFoLdB
+        K8vBNVpZDMrPYQq11IMHdLZFFUEb8ZZInnbxr+h98WMLB/cwrfnznssD6+QLPGNUn3K5geTcB9MQw8WX
+        Jd1AAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA
