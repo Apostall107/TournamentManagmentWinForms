@@ -19,16 +19,16 @@ namespace TournamentManagmentWinForms.Forms
 
         private List<PersonModel> _AvaliableTeamMember = GlobalConfig.Connection.People_GetAll(); //list for drop box
         private List<PersonModel> _SelectedTeamMember = new List<PersonModel>(); // list for listbox
+        private ITeamRequestor recuestingForm;
 
-
-        public CreateNewTeamForm()
+        public CreateNewTeamForm(ITeamRequestor requestor)
         {
             InitializeComponent();
 
 #if DEBUG
             //CreateSampleData();
 #endif
-
+            recuestingForm = requestor;
 
             WireUpLists();
 
@@ -148,7 +148,7 @@ namespace TournamentManagmentWinForms.Forms
                 WireUpLists();
             }
 
-            
+
 
         }
 
@@ -165,7 +165,7 @@ namespace TournamentManagmentWinForms.Forms
                 WireUpLists();
             }
 
-            
+
 
         }
 
@@ -179,18 +179,14 @@ namespace TournamentManagmentWinForms.Forms
 
             model = GlobalConfig.Connection.CreateTeam(model);
 
-            ResetForm();
+            recuestingForm.TeamComplete(model);
 
-        }
+            this.Close();
 
-
-        void ResetForm()
-        {
-
-            TeamName_TextBox.Text = "";
-        
         }
 
 
     }
+
+
 }

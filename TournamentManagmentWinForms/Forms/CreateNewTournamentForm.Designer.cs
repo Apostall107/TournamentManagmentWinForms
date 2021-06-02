@@ -47,6 +47,7 @@ namespace TournamentManagmentWinForms.Forms
             this.Prize_ListBox = new System.Windows.Forms.ListBox();
             this.SelectTeam_DropBox = new System.Windows.Forms.ComboBox();
             this.CreateTeam_LinkLabel = new System.Windows.Forms.LinkLabel();
+            this.CreateTeam_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CreateTournament_HeaderLabel
@@ -61,7 +62,7 @@ namespace TournamentManagmentWinForms.Forms
             // 
             // AddTeam_Button
             // 
-            this.AddTeam_Button.Location = new System.Drawing.Point(94, 404);
+            this.AddTeam_Button.Location = new System.Drawing.Point(27, 481);
             this.AddTeam_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AddTeam_Button.Name = "AddTeam_Button";
             this.AddTeam_Button.Size = new System.Drawing.Size(112, 37);
@@ -72,7 +73,7 @@ namespace TournamentManagmentWinForms.Forms
             // 
             // CreatePrize_Button
             // 
-            this.CreatePrize_Button.Location = new System.Drawing.Point(94, 481);
+            this.CreatePrize_Button.Location = new System.Drawing.Point(147, 481);
             this.CreatePrize_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CreatePrize_Button.Name = "CreatePrize_Button";
             this.CreatePrize_Button.Size = new System.Drawing.Size(112, 37);
@@ -210,12 +211,23 @@ namespace TournamentManagmentWinForms.Forms
             this.CreateTeam_LinkLabel.TabStop = true;
             this.CreateTeam_LinkLabel.Text = "New Team";
             // 
+            // CreateTeam_Button
+            // 
+            this.CreateTeam_Button.Location = new System.Drawing.Point(92, 337);
+            this.CreateTeam_Button.Name = "CreateTeam_Button";
+            this.CreateTeam_Button.Size = new System.Drawing.Size(112, 35);
+            this.CreateTeam_Button.TabIndex = 18;
+            this.CreateTeam_Button.Text = "New Team";
+            this.CreateTeam_Button.UseVisualStyleBackColor = true;
+            this.CreateTeam_Button.Click += new System.EventHandler(this.CreateTeam_Button_Click);
+            // 
             // CreateNewTournamentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(530, 652);
+            this.Controls.Add(this.CreateTeam_Button);
             this.Controls.Add(this.CreateTeam_LinkLabel);
             this.Controls.Add(this.SelectTeam_DropBox);
             this.Controls.Add(this.Prize_ListBox);
@@ -262,5 +274,6 @@ namespace TournamentManagmentWinForms.Forms
         private System.Windows.Forms.ListBox Prize_ListBox;
         private System.Windows.Forms.ComboBox SelectTeam_DropBox;
         private System.Windows.Forms.LinkLabel CreateTeam_LinkLabel;
+        private System.Windows.Forms.Button CreateTeam_Button;
     }
 }

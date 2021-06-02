@@ -12,16 +12,18 @@ using AppLibrary.Models;
 
 namespace TournamentManagmentWinForms.Forms
 {
-    public partial class CreateNewTournamentForm : Form, IPrizeRequestor 
+    public partial class CreateNewTournamentForm : Form, IPrizeRequestor, ITeamRequestor
     {
 
         List<AppLibrary.Models.TeamModel> _AvaliableTeams = GlobalConfig.Connection.Teams_GetAll();
         List<TeamModel> _SelectedTeams = new List<TeamModel>();
         List<PrizeModel> _SelectedPrizes = new List<PrizeModel>();
+   
 
         public CreateNewTournamentForm()
         {
             InitializeComponent();
+
 
             WireUpLists();
         }
@@ -97,6 +99,19 @@ namespace TournamentManagmentWinForms.Forms
         {
             _SelectedPrizes.Add(model);
             WireUpLists();
+        }
+
+        public void TeamComplete(TeamModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CreateTeam_Button_Click(object sender, EventArgs e)
+        {
+            CreateNewTeamForm cntf = new CreateNewTeamForm(this);
+            cntf.Show();
+
+
         }
     }
 }
