@@ -11,12 +11,19 @@ namespace AppLibrary.Connections
 {
     class TextConnector : IDataConnection
     {
-        // TODO - realize method. Connect the CreateNewPrize for txt file.
+
+        #region Filespath strings
 
 
         private const string PrizesFile = "PrizeModels.csv";
         private const string PeopleFile = "PersonModels.csv";
 
+        #endregion
+
+
+
+
+        #region TextData Creation
         public Models.PersonModel CreatePerson(Models.PersonModel model)
         {
             int currentID = 1;
@@ -60,6 +67,10 @@ namespace AppLibrary.Connections
 
             return model;
         }
+
+
+        #endregion
+
 
     }
 }

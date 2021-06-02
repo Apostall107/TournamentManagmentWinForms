@@ -39,17 +39,13 @@ namespace AppLibrary.Connections
         }
 
     
+
+
         /// <summary>
-        /// Saves a new proze to the database
+        /// Saves a new prize to the database
         /// </summary>
         /// <param name="model"> The prize info.</param>
         /// <returns>The prize info, incuding unique identifier.</returns>
-        /// 
-
-
-
-
-
         public PrizeModel CreatePrize(PrizeModel model)
         {
 

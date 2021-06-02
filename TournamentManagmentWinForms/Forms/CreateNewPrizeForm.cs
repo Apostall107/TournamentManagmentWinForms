@@ -75,6 +75,7 @@ namespace TournamentManagmentWinForms.Forms
             // Place number Validation
 
             int placeNumber = 0;
+
             bool _PlaceName_TextBox_IsValidValue = int.TryParse(PlaceNumber_TextBox.Text, out placeNumber);
 
             if (!_PlaceName_TextBox_IsValidValue)
