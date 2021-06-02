@@ -10,9 +10,7 @@ namespace AppLibrary.Models
     {
 
         public int ID { get; set; }
-        /// <summary>
-        ///  Represents the place which u got in a result of tournament .
-        /// </summary>
+
         public int PlaceNumber { get; set; }
 
         /// <summary>

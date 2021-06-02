@@ -17,9 +17,14 @@ namespace TournamentManagmentWinForms.Forms
 {
     public partial class CreateNewPrizeForm : Form
     {
-        public CreateNewPrizeForm()
+
+        IPrizeRequestor requestingForm;
+        public CreateNewPrizeForm(IPrizeRequestor requestor)
         {
             InitializeComponent();
+
+            requestingForm = requestor;
+
         }
 
         private void CreatePrize_Button_Click(object sender, EventArgs e)
@@ -35,6 +40,9 @@ namespace TournamentManagmentWinForms.Forms
 
                 GlobalConfig.Connection.CreatePrize(model);
 
+                requestingForm.PrizeComplete(model);
+
+                this.Close();
 
             }
             else

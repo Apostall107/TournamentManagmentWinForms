@@ -68,6 +68,7 @@ namespace TournamentManagmentWinForms.Forms
             this.AddTeam_Button.TabIndex = 2;
             this.AddTeam_Button.Text = "Add Team";
             this.AddTeam_Button.UseVisualStyleBackColor = true;
+            this.AddTeam_Button.Click += new System.EventHandler(this.AddTeam_Button_Click);
             // 
             // CreatePrize_Button
             // 
@@ -78,6 +79,7 @@ namespace TournamentManagmentWinForms.Forms
             this.CreatePrize_Button.TabIndex = 3;
             this.CreatePrize_Button.Text = "Create Prize";
             this.CreatePrize_Button.UseVisualStyleBackColor = true;
+            this.CreatePrize_Button.Click += new System.EventHandler(this.CreatePrize_Button_Click);
             // 
             // DeleteParticipants_Button
             // 
@@ -88,6 +90,7 @@ namespace TournamentManagmentWinForms.Forms
             this.DeleteParticipants_Button.TabIndex = 4;
             this.DeleteParticipants_Button.Text = "Delete Selected";
             this.DeleteParticipants_Button.UseVisualStyleBackColor = true;
+            this.DeleteParticipants_Button.Click += new System.EventHandler(this.DeleteParticipants_Button_Click);
             // 
             // DeletePrize_Button
             // 
