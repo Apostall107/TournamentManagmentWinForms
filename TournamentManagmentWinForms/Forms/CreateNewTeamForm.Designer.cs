@@ -37,8 +37,8 @@ namespace TournamentManagmentWinForms.Forms
             this.LastName_Label = new System.Windows.Forms.Label();
             this.Email_Label = new System.Windows.Forms.Label();
             this.PhoneNum_Label = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SelectTeamMember_DropBox = new System.Windows.Forms.ComboBox();
+            this.TeamName_TextBox = new System.Windows.Forms.TextBox();
             this.TeamMembers_ListBox = new System.Windows.Forms.ListBox();
             this.CreateMember_Button = new System.Windows.Forms.Button();
             this.DeleteSelected_Button = new System.Windows.Forms.Button();
@@ -116,20 +116,20 @@ namespace TournamentManagmentWinForms.Forms
             this.PhoneNum_Label.TabIndex = 8;
             this.PhoneNum_Label.Text = "Phone Num.";
             // 
-            // comboBox1
+            // SelectTeamMember_DropBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(20, 184);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(217, 29);
-            this.comboBox1.TabIndex = 10;
+            this.SelectTeamMember_DropBox.FormattingEnabled = true;
+            this.SelectTeamMember_DropBox.Location = new System.Drawing.Point(20, 184);
+            this.SelectTeamMember_DropBox.Name = "SelectTeamMember_DropBox";
+            this.SelectTeamMember_DropBox.Size = new System.Drawing.Size(217, 29);
+            this.SelectTeamMember_DropBox.TabIndex = 10;
             // 
-            // textBox1
+            // TeamName_TextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(20, 128);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(217, 29);
-            this.textBox1.TabIndex = 11;
+            this.TeamName_TextBox.Location = new System.Drawing.Point(20, 128);
+            this.TeamName_TextBox.Name = "TeamName_TextBox";
+            this.TeamName_TextBox.Size = new System.Drawing.Size(217, 29);
+            this.TeamName_TextBox.TabIndex = 11;
             // 
             // TeamMembers_ListBox
             // 
@@ -224,8 +224,8 @@ namespace TournamentManagmentWinForms.Forms
             this.Controls.Add(this.CreateTeam_Button);
             this.Controls.Add(this.DeleteSelected_Button);
             this.Controls.Add(this.TeamMembers_ListBox);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.TeamName_TextBox);
+            this.Controls.Add(this.SelectTeamMember_DropBox);
             this.Controls.Add(this.SelectTeamMember_Label);
             this.Controls.Add(this.TeamName_Label);
             this.Controls.Add(this.CreateTeam_HeaderLabel);
@@ -250,8 +250,8 @@ namespace TournamentManagmentWinForms.Forms
         private System.Windows.Forms.Label LastName_Label;
         private System.Windows.Forms.Label Email_Label;
         private System.Windows.Forms.Label PhoneNum_Label;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox SelectTeamMember_DropBox;
+        private System.Windows.Forms.TextBox TeamName_TextBox;
         private System.Windows.Forms.ListBox TeamMembers_ListBox;
         private System.Windows.Forms.Button CreateMember_Button;
         private System.Windows.Forms.Button DeleteSelected_Button;
