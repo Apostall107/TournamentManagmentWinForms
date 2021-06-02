@@ -70,15 +70,15 @@ namespace AppLibrary.Connections
             return model;
         }
 
-        public List<PersonModel> People_GetAll()
-        {
-            throw new NotImplementedException();
-        }
 
 
         #endregion
 
 
+        public List<PersonModel> People_GetAll()
+        {
+            return PeopleFile.FullTxtFilePath().LoadFile().ConvertToPersonModels();
+        }
 
 
 

@@ -25,18 +25,18 @@ namespace TournamentManagmentWinForms.Forms
         {
             InitializeComponent();
 
-       #if DEBUG
+#if DEBUG
             CreateSampleData();
-       #endif
+#endif
 
 
             WireUpLists();
 
         }
-       
 
-        
-        #if DEBUG
+
+
+#if DEBUG
         private void CreateSampleData()
         {
             _AvaliableTeamMember.Add(new PersonModel { FirstName = "Sasha", LastName = "Hryn" });
@@ -45,9 +45,10 @@ namespace TournamentManagmentWinForms.Forms
             _SelectedTeamMember.Add(new PersonModel { FirstName = "NotSasha", LastName = "NotHryn" });
             _SelectedTeamMember.Add(new PersonModel { FirstName = "NotSasha2", LastName = "NotHryn2" });
         }
-       
-        
-        #endif
+
+#endif
+
+
 
         private void WireUpLists()
         {
@@ -64,7 +65,7 @@ namespace TournamentManagmentWinForms.Forms
             TeamMembers_ListBox.DisplayMember = "FullName";
 
 
-         
+
 
         }
 
@@ -83,8 +84,9 @@ namespace TournamentManagmentWinForms.Forms
 
                 GlobalConfig.Connection.CreatePerson(person);
 
+                _SelectedTeamMember.Add(person);
 
-
+                WireUpLists();
 
                 ResetMemberBoxes();
 
@@ -131,15 +133,39 @@ namespace TournamentManagmentWinForms.Forms
 
         #endregion
 
+
+
         private void AddTeamMember_Button_Click(object sender, EventArgs e)
         {
+
             PersonModel person = (PersonModel)SelectTeamMember_DropBox.SelectedItem;
+            if (person != null) //catching null due to bug occured when selected field is empty
+            {
+                _AvaliableTeamMember.Remove(person); //remove person and add ====>
+                _SelectedTeamMember.Add(person);// ===>  it here <====
 
-            _AvaliableTeamMember.Remove(person); //remove person and add ====>
-            _SelectedTeamMember.Add(person);// ===>  it here <====
 
+                WireUpLists();
+            }
 
-            WireUpLists();
+            
+
+        }
+
+        private void RemoveSelected_Button_Click(object sender, EventArgs e)
+        {
+
+            PersonModel person = (PersonModel)TeamMembers_ListBox.SelectedItem;
+
+            if (person != null)//catching null due to bug occured when selected field is empty
+            {
+                _SelectedTeamMember.Remove(person); //remove person and add ====>
+                _AvaliableTeamMember.Add(person);// ===>  it here <====
+
+                WireUpLists();
+            }
+
+            
 
         }
     }

@@ -41,7 +41,7 @@ namespace TournamentManagmentWinForms.Forms
             this.TeamName_TextBox = new System.Windows.Forms.TextBox();
             this.TeamMembers_ListBox = new System.Windows.Forms.ListBox();
             this.CreateMember_Button = new System.Windows.Forms.Button();
-            this.DeleteSelected_Button = new System.Windows.Forms.Button();
+            this.RemoveSelected_Button = new System.Windows.Forms.Button();
             this.CreateTeam_Button = new System.Windows.Forms.Button();
             this.AddNewMember_GroupBox = new System.Windows.Forms.GroupBox();
             this.PhoneNum_TextBox = new System.Windows.Forms.TextBox();
@@ -143,6 +143,8 @@ namespace TournamentManagmentWinForms.Forms
             // 
             // CreateMember_Button
             // 
+            this.CreateMember_Button.Image = ((System.Drawing.Image)(resources.GetObject("CreateMember_Button.Image")));
+            this.CreateMember_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.CreateMember_Button.Location = new System.Drawing.Point(6, 187);
             this.CreateMember_Button.Name = "CreateMember_Button";
             this.CreateMember_Button.Size = new System.Drawing.Size(302, 35);
@@ -151,20 +153,22 @@ namespace TournamentManagmentWinForms.Forms
             this.CreateMember_Button.UseVisualStyleBackColor = true;
             this.CreateMember_Button.Click += new System.EventHandler(this.CreateMember_Button_Click);
             // 
-            // DeleteSelected_Button
+            // RemoveSelected_Button
             // 
-            this.DeleteSelected_Button.Location = new System.Drawing.Point(375, 514);
-            this.DeleteSelected_Button.Name = "DeleteSelected_Button";
-            this.DeleteSelected_Button.Size = new System.Drawing.Size(251, 29);
-            this.DeleteSelected_Button.TabIndex = 14;
-            this.DeleteSelected_Button.Text = "Delete Selected";
-            this.DeleteSelected_Button.UseVisualStyleBackColor = true;
+            this.RemoveSelected_Button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RemoveSelected_Button.BackgroundImage")));
+            this.RemoveSelected_Button.Image = ((System.Drawing.Image)(resources.GetObject("RemoveSelected_Button.Image")));
+            this.RemoveSelected_Button.Location = new System.Drawing.Point(375, 508);
+            this.RemoveSelected_Button.Name = "RemoveSelected_Button";
+            this.RemoveSelected_Button.Size = new System.Drawing.Size(251, 29);
+            this.RemoveSelected_Button.TabIndex = 14;
+            this.RemoveSelected_Button.UseVisualStyleBackColor = true;
+            this.RemoveSelected_Button.Click += new System.EventHandler(this.RemoveSelected_Button_Click);
             // 
             // CreateTeam_Button
             // 
-            this.CreateTeam_Button.Location = new System.Drawing.Point(426, 571);
+            this.CreateTeam_Button.Location = new System.Drawing.Point(-2, 575);
             this.CreateTeam_Button.Name = "CreateTeam_Button";
-            this.CreateTeam_Button.Size = new System.Drawing.Size(154, 41);
+            this.CreateTeam_Button.Size = new System.Drawing.Size(640, 62);
             this.CreateTeam_Button.TabIndex = 15;
             this.CreateTeam_Button.Text = "Create Team";
             this.CreateTeam_Button.UseVisualStyleBackColor = true;
@@ -235,7 +239,7 @@ namespace TournamentManagmentWinForms.Forms
             this.Controls.Add(this.AddTeamMember_Button);
             this.Controls.Add(this.AddNewMember_GroupBox);
             this.Controls.Add(this.CreateTeam_Button);
-            this.Controls.Add(this.DeleteSelected_Button);
+            this.Controls.Add(this.RemoveSelected_Button);
             this.Controls.Add(this.TeamMembers_ListBox);
             this.Controls.Add(this.TeamName_TextBox);
             this.Controls.Add(this.SelectTeamMember_DropBox);
@@ -267,7 +271,7 @@ namespace TournamentManagmentWinForms.Forms
         private System.Windows.Forms.TextBox TeamName_TextBox;
         private System.Windows.Forms.ListBox TeamMembers_ListBox;
         private System.Windows.Forms.Button CreateMember_Button;
-        private System.Windows.Forms.Button DeleteSelected_Button;
+        private System.Windows.Forms.Button RemoveSelected_Button;
         private System.Windows.Forms.Button CreateTeam_Button;
         private System.Windows.Forms.GroupBox AddNewMember_GroupBox;
         private System.Windows.Forms.TextBox PhoneNum_TextBox;
