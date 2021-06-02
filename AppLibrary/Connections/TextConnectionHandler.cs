@@ -11,6 +11,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
     public static class TextConnectionHandler
     {
 
+        #region path/load
         public static string FullTxtFilePath(this string fileName)
         {
 
@@ -35,47 +36,95 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
         }
 
+        #endregion
+
+
+
+        #region PrizeHandling
 
         public static List<Models.PrizeModel> ConvertToPrizeModels(this List<string> lines)
         {
 
             List<Models.PrizeModel> output = new List<Models.PrizeModel>();
 
-            foreach (string ln in lines)
+            foreach (string line in lines)
             {
 
-                string[]  cols = ln.Split(',');
+                string[]  column = line.Split(',');
 
                 Models.PrizeModel p = new Models.PrizeModel();
-                p.ID = int.Parse(cols[0]);
-                p.PlaceNumber = int.Parse(cols[1]);
-                p.PlaceName = cols[2];
-                p.PrizeAmount = decimal.Parse(cols[3]);
-                p.PrizePercentage = double.Parse(cols[4]);
+                p.ID = int.Parse(column[0]);
+                p.PlaceNumber = int.Parse(column[1]);
+                p.PlaceName = column[2];
+                p.PrizeAmount = decimal.Parse(column[3]);
+                p.PrizePercentage = double.Parse(column[4]);
                 output.Add(p);
 
             }
 
             return output;
         }
-
-
         public static void SaveToPrizeFile(this List<Models.PrizeModel> models, string fileName)
         {
 
 
-            List<string> ln = new List<string>();
+            List<string> line = new List<string>();
 
-            foreach (Models.PrizeModel p in models)
+            foreach (Models.PrizeModel prize in models)
             {
 
-                ln.Add($"{ p.ID},{p.PlaceNumber },{ p.PlaceName},{p.PrizeAmount},{p.PrizePercentage}");
+                line.Add($"{ prize.ID},{prize.PlaceNumber },{ prize.PlaceName},{prize.PrizeAmount},{prize.PrizePercentage}");
             
             }
 
-            File.WriteAllLines(fileName.FullTxtFilePath(), ln);
+            File.WriteAllLines(fileName.FullTxtFilePath(), line);
 
         }
+
+        #endregion
+
+
+
+        #region PersonHandling
+        public static List<Models.PersonModel> ConvertToPersonModels(this List<string> lines)
+        {
+            List<Models.PersonModel> output = new List<Models.PersonModel>();
+
+            foreach (string line in lines)
+            {
+                string[] column = line.Split(',');
+
+                Models.PersonModel person = new Models.PersonModel
+                {
+                    ID = int.Parse(column[0]),
+                    FirstName = column[1],
+                    LastName = column[2],
+                    Email = column[3],
+                    PhoneNum = column[4]
+                };
+
+                output.Add(person);
+            }
+
+            return output;
+        }
+
+        
+        public static void SaveToPeopleFile(this List<Models.PersonModel> models, string fileName)
+        {
+            List<string> line = new List<string>();
+
+            foreach (Models.PersonModel person in models)
+            {
+                line.Add($"{ person.ID },{ person.FirstName },{ person.LastName },{ person.Email },{ person.PhoneNum }");
+            }
+
+            File.WriteAllLines(fileName.FullTxtFilePath(), line);
+        }
+        #endregion
+
+
+
 
 
     }
