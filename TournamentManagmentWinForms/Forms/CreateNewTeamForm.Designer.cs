@@ -149,7 +149,7 @@ namespace TournamentManagmentWinForms.Forms
             this.CreateMember_Button.Name = "CreateMember_Button";
             this.CreateMember_Button.Size = new System.Drawing.Size(302, 35);
             this.CreateMember_Button.TabIndex = 13;
-            this.CreateMember_Button.Text = "Create Member";
+            this.CreateMember_Button.Text = "Add New Member";
             this.CreateMember_Button.UseVisualStyleBackColor = true;
             this.CreateMember_Button.Click += new System.EventHandler(this.CreateMember_Button_Click);
             // 
@@ -172,6 +172,7 @@ namespace TournamentManagmentWinForms.Forms
             this.CreateTeam_Button.TabIndex = 15;
             this.CreateTeam_Button.Text = "Create Team";
             this.CreateTeam_Button.UseVisualStyleBackColor = true;
+            this.CreateTeam_Button.Click += new System.EventHandler(this.CreateTeam_Button_Click);
             // 
             // AddNewMember_GroupBox
             // 
@@ -184,7 +185,7 @@ namespace TournamentManagmentWinForms.Forms
             this.AddNewMember_GroupBox.Controls.Add(this.LastName_Label);
             this.AddNewMember_GroupBox.Controls.Add(this.Email_Label);
             this.AddNewMember_GroupBox.Controls.Add(this.PhoneNum_Label);
-            this.AddNewMember_GroupBox.Location = new System.Drawing.Point(20, 315);
+            this.AddNewMember_GroupBox.Location = new System.Drawing.Point(20, 313);
             this.AddNewMember_GroupBox.Name = "AddNewMember_GroupBox";
             this.AddNewMember_GroupBox.Size = new System.Drawing.Size(314, 228);
             this.AddNewMember_GroupBox.TabIndex = 16;

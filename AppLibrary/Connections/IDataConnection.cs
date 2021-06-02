@@ -9,6 +9,7 @@ namespace AppLibrary.Connections
         PrizeModel CreatePrize(PrizeModel model);
         PersonModel CreatePerson(PersonModel model);
 
+        TeamModel CreateTeam(TeamModel model);
         System.Collections.Generic.List<PersonModel> People_GetAll();
 
     }

@@ -70,6 +70,11 @@ namespace AppLibrary.Connections
             return model;
         }
 
+        public TeamModel CreateTeam(TeamModel model)
+        {
+            throw new NotImplementedException();
+        }
+
 
 
         #endregion

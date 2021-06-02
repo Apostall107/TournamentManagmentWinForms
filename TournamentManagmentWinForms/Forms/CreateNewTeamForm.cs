@@ -168,5 +168,29 @@ namespace TournamentManagmentWinForms.Forms
             
 
         }
+
+        private void CreateTeam_Button_Click(object sender, EventArgs e)
+        {
+
+            TeamModel model = new TeamModel();
+            model.TeamName = TeamName_TextBox.Text;
+            model.TeamMembers = _SelectedTeamMember;
+
+
+            model = GlobalConfig.Connection.CreateTeam(model);
+
+            ResetForm();
+
+        }
+
+
+        void ResetForm()
+        {
+
+            TeamName_TextBox.Text = "";
+        
+        }
+
+
     }
 }

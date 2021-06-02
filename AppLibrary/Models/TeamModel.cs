@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace AppLibrary.Models
 {
-    class TeamModel
+    public class TeamModel
     {
+        
 
         /// <summary>
         ///  List of the ppl in the team.
         /// </summary>
         public List<PersonModel> TeamMembers { get; set; } = new List<PersonModel>();
 
+        public int ID  { get; set; }
 
         public string TeamName { get; set; }
 
