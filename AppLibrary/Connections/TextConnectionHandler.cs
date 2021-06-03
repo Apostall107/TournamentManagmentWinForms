@@ -11,6 +11,10 @@ namespace AppLibrary.Connections.TextConnectionHandler
     public static class TextConnectionHandler
     {
 
+        private const string separator = ",|—";
+
+
+
         #region path/load
         public static string FullTxtFilePath(this string fileName)
         {
@@ -43,7 +47,6 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
         #region ConvertTo...Models
 
-        private const string separator = ",|—";
 
         public static List<Models.PrizeModel> ConvertToPrizeModels(this List<string> lines)
         {
@@ -201,6 +204,9 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
 
 
+
+
+
         #region SaveTo...File
 
 
@@ -238,7 +244,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
             foreach (Models.TeamModel team in models)
             {
-                lines.Add($"{ team.ID },{ team.TeamName},{ConvertPeopleFileToString(team.TeamMembers) }");
+                lines.Add($"{ team.ID },{ team.TeamName},{ConvertPeopleListToString(team.TeamMembers) }");
             }
 
             File.WriteAllLines(fileName.FullTxtFilePath(), lines);
@@ -248,9 +254,14 @@ namespace AppLibrary.Connections.TextConnectionHandler
         {
             List<string> lines = new List<string>();
 
-            foreach (Models.TournamentModel rournamentM in models)
+            foreach (Models.TournamentModel tournamentM in models)
             {
-                lines.Add($"{ rournamentM.ID },{ rournamentM.TournamentName},{ ""}");
+                lines.Add($@"{ tournamentM.ID },
+                                      { tournamentM.TournamentName },
+                                      { tournamentM.EntryFee },
+                                      { ConvertTeamListToString(tournamentM.EnteredTeams) }, 
+                                      { ConvertPrizeListToString(tournamentM.Prizes) },
+                                      { "" }");
             }
 
             File.WriteAllLines(fileName.FullTxtFilePath(), lines);
@@ -259,9 +270,13 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
         #endregion
 
-        #region Helper Methods
 
-        private static string ConvertPeopleFileToString(List<Models.PersonModel> ppl)
+
+
+
+        #region Convert list to str /  Helper Methods
+
+        private static string ConvertPeopleListToString(List<Models.PersonModel> ppl)
         {
 
             string output = "";
@@ -283,7 +298,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
             return output;
         }
 
-        private static string ConvertTeamFileToString(List<Models.TeamModel> teams)
+        private static string ConvertTeamListToString(List<Models.TeamModel> teams)
         {
             string output = "";
 
@@ -304,6 +319,76 @@ namespace AppLibrary.Connections.TextConnectionHandler
             return output;
 
         }
+
+
+        private static string ConvertPrizeListToString(List<Models.PrizeModel> prizes)
+        {
+            string output = "";
+
+            if (prizes.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (Models.PrizeModel pm in prizes)
+            {
+
+                output += $" {pm.ID}{separator[1]}";
+
+            }
+
+            output = output.Substring(0, output.Length - 1);// save all output string with all length 0 to n-1
+
+            return output;
+
+        }
+
+
+        private static string ConvertRoundsListToString(List<List<Models.MatchupModel>> rounds)
+        {
+            string output = "";
+
+            if (rounds.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (List<Models.MatchupModel> r in rounds)
+            {
+
+                output += $" {r.ConvertMatchupsListToString(r)}{separator[1]}";
+
+            }
+
+            output = output.Substring(0, output.Length - 1);// save all output string with all length 0 to n-1
+
+            return output;
+
+        }
+
+        private static string ConvertMatchupsListToString(List<Models.MatchupModel> matchups)
+        {
+            string output = "";
+
+            if (matchups.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (Models.MatchupModel mm in matchups)
+            {
+
+                output += $" {mm.ID}{separator[1]}";
+
+            }
+
+            output = output.Substring(0, output.Length - 1);// save all output string with all length 0 to n-1
+
+            return output;
+
+        }
+
+
 
         #endregion
 

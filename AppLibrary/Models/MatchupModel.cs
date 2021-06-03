@@ -8,7 +8,7 @@ namespace AppLibrary.Models
 {
     public class MatchupModel
     {
-
+        public int ID { get; set; }
         public List<MatchupEntryModel> Entries { get; set; } = new List<MatchupEntryModel>();
 
 
