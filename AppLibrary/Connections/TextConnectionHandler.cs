@@ -283,6 +283,27 @@ namespace AppLibrary.Connections.TextConnectionHandler
             return output;
         }
 
+        private static string ConvertTeamFileToString(List<Models.TeamModel> teams)
+        {
+            string output = "";
+
+            if (teams.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (Models.TeamModel tm in teams)
+            {
+
+                output += $" {tm.ID}{separator[1]}";
+
+            }
+
+            output = output.Substring(0, output.Length - 1);// save all output string with all length 0 to n-1
+
+            return output;
+
+        }
 
         #endregion
 
