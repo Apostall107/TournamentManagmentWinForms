@@ -18,7 +18,7 @@ namespace TournamentManagmentWinForms.Forms
         List<AppLibrary.Models.TeamModel> _AvaliableTeams = GlobalConfig.Connection.Teams_GetAll();
         List<TeamModel> _SelectedTeams = new List<TeamModel>();
         List<PrizeModel> _SelectedPrizes = new List<PrizeModel>();
-   
+
 
         public CreateNewTournamentForm()
         {
@@ -44,7 +44,7 @@ namespace TournamentManagmentWinForms.Forms
             Prize_ListBox.DataSource = null;
 
             Prize_ListBox.DataSource = _SelectedPrizes;
-            Prize_ListBox.DisplayMember = "ID";
+            Prize_ListBox.DisplayMember = "PlaceName";
 
         }
 
@@ -63,7 +63,7 @@ namespace TournamentManagmentWinForms.Forms
                 _SelectedTeams.Add(team);// ===>  it here <====
 
                 WireUpLists();
-                
+
             }
 
 
@@ -75,12 +75,13 @@ namespace TournamentManagmentWinForms.Forms
             TeamModel team = (TeamModel)ParticipantsListBox.SelectedItem;
             if (team != null) //catching null due to bug occured when selected field is empty
             {
-            
-                
+
+
                 _SelectedTeams.Remove(team);// ===>  it here <====
                 _AvaliableTeams.Add(team); //remove person and add ====>
 
                 WireUpLists();
+
 
             }
         }
@@ -103,13 +104,71 @@ namespace TournamentManagmentWinForms.Forms
 
         public void TeamComplete(TeamModel model)
         {
-            throw new NotImplementedException();
+            _SelectedTeams.Add(model);
+            WireUpLists();
         }
 
         private void CreateTeam_Button_Click(object sender, EventArgs e)
         {
             CreateNewTeamForm cntf = new CreateNewTeamForm(this);
             cntf.Show();
+
+
+        }
+
+        private void RemovePrize_Button_Click(object sender, EventArgs e)
+        {
+            PrizeModel prize = (PrizeModel)Prize_ListBox.SelectedItem;
+
+            if (prize != null)//catching null due to bug occured when selected field is empty
+            {
+
+                //selectedPrizes.Remove(p);
+
+                //WireUpLists();
+
+                _SelectedPrizes.Remove(prize);
+                WireUpLists();
+            }
+        }
+
+        private void CreateTournament_Button_Click(object sender, EventArgs e)
+        {
+            //data validation
+
+            decimal fee = 0;
+
+            bool fee_IsValid = decimal.TryParse(EntryFee_TextBox.Text, out fee);
+
+            if (!fee_IsValid)
+            {
+
+                MessageBox.Show("You need to enter a valid  Fee value!",
+                    "Invalid fee value!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return;
+            }
+
+
+
+
+
+            TournamentModel tournamentModel = new TournamentModel();
+
+            tournamentModel.TournamentName = TournamentName_TextBox.Text;
+
+            tournamentModel.EntryFee = fee;
+
+            tournamentModel.Prizes = _SelectedPrizes;
+            tournamentModel.EnteredTeams= _SelectedTeams;
+
+
+            
+
+
+
 
 
         }

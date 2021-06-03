@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace AppLibrary.Models
 {
-    class TournamentModel
+    public class TournamentModel
     {
+
+        public int ID { get; set; }
 
         /// <summary>
         ///  Name of the particular tournament to identify it.

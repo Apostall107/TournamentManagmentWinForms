@@ -7,7 +7,7 @@ using AppLibrary.Connections;
 
 namespace AppLibrary.Models
 {
-    class MatchupEntryModel
+    public class MatchupEntryModel
     {
 
         /// <summary>       

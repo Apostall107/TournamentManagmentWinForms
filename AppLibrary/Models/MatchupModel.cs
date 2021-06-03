@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppLibrary.Models
 {
-    class MatchupModel
+    public class MatchupModel
     {
 
         public List<MatchupEntryModel> Entries { get; set; } = new List<MatchupEntryModel>();

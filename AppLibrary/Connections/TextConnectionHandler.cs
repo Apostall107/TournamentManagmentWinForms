@@ -92,11 +92,69 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
 
 
-
-
         #region Pipe Separator
+
+        public static List<Models.TournamentModel> ConvertToTournamentModels(this List<string> lines, string teamFileName, string peopleFileName, string pizesFileName)
+        {
+            List<Models.TournamentModel> output = new List<Models.TournamentModel>();
+            List<Models.TeamModel> teams = teamFileName.FullTxtFilePath().LoadFile().ConvertToTeamModels(peopleFileName);
+            List<Models.PrizeModel> prizes = pizesFileName.FullTxtFilePath().LoadFile().ConvertToPrizeModels();
+            //        List<Models.MatchupModel> matchups = MatchupFile.FullFilePath().LoadFile().ConvertToMatchupModels();
+
+            foreach (string line in lines)
+            {
+                string[] cols = line.Split(separator[0]);
+
+                Models.TournamentModel tm = new Models.TournamentModel();
+                tm.ID = int.Parse(cols[0]);
+                tm.TournamentName = cols[1];
+                tm.EntryFee = decimal.Parse(cols[2]);
+
+                string[] teamIds = cols[3].Split(separator[1]);
+
+                foreach (string Id in teamIds)
+                {
+                    tm.EnteredTeams.Add(teams.Where(x => x.ID == int.Parse(Id)).First());
+                }
+
+                if (cols[4].Length > 0)
+                {
+                    string[] prizeIds = cols[4].Split(separator[1]);
+
+                    foreach (string Id in prizeIds)
+                    {
+                        tm.Prizes.Add(prizes.Where(x => x.ID == int.Parse(Id)).First());
+                    }
+                }
+
+                //TODO: realize round capture.
+
+                //// Capture Rounds information
+                //string[] rounds = cols[5].Split('|');
+
+                //foreach (string round in rounds)
+                //{
+                //    string[] msText = round.Split('^');
+                //    List<MatchupModel> ms = new List<MatchupModel>();
+
+                //    foreach (string matchupModelTextId in msText)
+                //    {
+                //        ms.Add(matchups.Where(x => x.Id == int.Parse(matchupModelTextId)).First());
+                //    }
+
+                //    tm.Rounds.Add(ms);
+                //}
+
+                output.Add(tm);
+            }
+
+            return output;
+
+        }
+
         public static List<Models.TeamModel> ConvertToTeamModels(this List<string> lines, string peopleFileName)
         {
+
             List<Models.TeamModel> output = new List<Models.TeamModel>();
             List<Models.PersonModel> ppl = peopleFileName.FullTxtFilePath().LoadFile().ConvertToPersonModels();
 
@@ -126,6 +184,8 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
                 }
 
+                output.Add(team);
+
             }
 
             return output;
@@ -142,6 +202,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
 
         #region SaveTo...File
+
 
         public static void SaveToPrizeFile(this List<Models.PrizeModel> models, string fileName)
         {
@@ -178,6 +239,18 @@ namespace AppLibrary.Connections.TextConnectionHandler
             foreach (Models.TeamModel team in models)
             {
                 lines.Add($"{ team.ID },{ team.TeamName},{ConvertPeopleFileToString(team.TeamMembers) }");
+            }
+
+            File.WriteAllLines(fileName.FullTxtFilePath(), lines);
+        }
+
+        public static void SaveToTournametFile(this List<Models.TournamentModel> models, string fileName)
+        {
+            List<string> lines = new List<string>();
+
+            foreach (Models.TournamentModel rournamentM in models)
+            {
+                lines.Add($"{ rournamentM.ID },{ rournamentM.TournamentName},{ ""}");
             }
 
             File.WriteAllLines(fileName.FullTxtFilePath(), lines);

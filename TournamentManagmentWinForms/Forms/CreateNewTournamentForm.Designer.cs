@@ -34,7 +34,7 @@ namespace TournamentManagmentWinForms.Forms
             this.AddTeam_Button = new System.Windows.Forms.Button();
             this.CreatePrize_Button = new System.Windows.Forms.Button();
             this.DeleteParticipants_Button = new System.Windows.Forms.Button();
-            this.DeletePrize_Button = new System.Windows.Forms.Button();
+            this.RemovePrize_Button = new System.Windows.Forms.Button();
             this.CreateTournament_Button = new System.Windows.Forms.Button();
             this.TournamentName_TextBox = new System.Windows.Forms.TextBox();
             this.EntryFee_TextBox = new System.Windows.Forms.TextBox();
@@ -89,19 +89,20 @@ namespace TournamentManagmentWinForms.Forms
             this.DeleteParticipants_Button.Name = "DeleteParticipants_Button";
             this.DeleteParticipants_Button.Size = new System.Drawing.Size(217, 29);
             this.DeleteParticipants_Button.TabIndex = 4;
-            this.DeleteParticipants_Button.Text = "Delete Selected";
+            this.DeleteParticipants_Button.Text = "Remove Selected";
             this.DeleteParticipants_Button.UseVisualStyleBackColor = true;
             this.DeleteParticipants_Button.Click += new System.EventHandler(this.DeleteParticipants_Button_Click);
             // 
-            // DeletePrize_Button
+            // RemovePrize_Button
             // 
-            this.DeletePrize_Button.Location = new System.Drawing.Point(301, 602);
-            this.DeletePrize_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DeletePrize_Button.Name = "DeletePrize_Button";
-            this.DeletePrize_Button.Size = new System.Drawing.Size(217, 29);
-            this.DeletePrize_Button.TabIndex = 5;
-            this.DeletePrize_Button.Text = "Delete Selected";
-            this.DeletePrize_Button.UseVisualStyleBackColor = true;
+            this.RemovePrize_Button.Location = new System.Drawing.Point(301, 602);
+            this.RemovePrize_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RemovePrize_Button.Name = "RemovePrize_Button";
+            this.RemovePrize_Button.Size = new System.Drawing.Size(217, 29);
+            this.RemovePrize_Button.TabIndex = 5;
+            this.RemovePrize_Button.Text = "Remove Selected";
+            this.RemovePrize_Button.UseVisualStyleBackColor = true;
+            this.RemovePrize_Button.Click += new System.EventHandler(this.RemovePrize_Button_Click);
             // 
             // CreateTournament_Button
             // 
@@ -112,6 +113,7 @@ namespace TournamentManagmentWinForms.Forms
             this.CreateTournament_Button.TabIndex = 6;
             this.CreateTournament_Button.Text = "Create Tournament";
             this.CreateTournament_Button.UseVisualStyleBackColor = true;
+            this.CreateTournament_Button.Click += new System.EventHandler(this.CreateTournament_Button_Click);
             // 
             // TournamentName_TextBox
             // 
@@ -240,7 +242,7 @@ namespace TournamentManagmentWinForms.Forms
             this.Controls.Add(this.EntryFee_TextBox);
             this.Controls.Add(this.TournamentName_TextBox);
             this.Controls.Add(this.CreateTournament_Button);
-            this.Controls.Add(this.DeletePrize_Button);
+            this.Controls.Add(this.RemovePrize_Button);
             this.Controls.Add(this.DeleteParticipants_Button);
             this.Controls.Add(this.CreatePrize_Button);
             this.Controls.Add(this.AddTeam_Button);
@@ -261,7 +263,7 @@ namespace TournamentManagmentWinForms.Forms
         private System.Windows.Forms.Button AddTeam_Button;
         private System.Windows.Forms.Button CreatePrize_Button;
         private System.Windows.Forms.Button DeleteParticipants_Button;
-        private System.Windows.Forms.Button DeletePrize_Button;
+        private System.Windows.Forms.Button RemovePrize_Button;
         private System.Windows.Forms.Button CreateTournament_Button;
         private System.Windows.Forms.TextBox TournamentName_TextBox;
         private System.Windows.Forms.TextBox EntryFee_TextBox;

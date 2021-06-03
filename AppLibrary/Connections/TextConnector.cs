@@ -20,6 +20,7 @@ namespace AppLibrary.Connections
         private const string PrizesFile = "PrizeModels.csv";
         private const string PeopleFile = "PersonModels.csv";
         private const string TeamFile = "TeamModels.csv";
+        private const string  TournamentFile = "TournamentModel.csv";
 
         #endregion
 
@@ -95,6 +96,29 @@ namespace AppLibrary.Connections
             return model;
         }
 
+        public TournamentModel CreateTournament(TournamentModel model)
+        {
+            List<Models.TournamentModel> tournaments = TeamFile.FullTxtFilePath().LoadFile()
+                .ConvertToTournamentModels(TeamFile, PeopleFile,PrizesFile);
+
+            int currentID = 1;
+
+
+            if (tournaments.Count > 0)
+            {
+                currentID = tournaments.OrderByDescending(x => x.ID).First().ID + 1;  // incrementation of ID
+            }
+
+            model.ID = currentID;
+
+
+            tournaments.Add(model);//add new recorn with incremented ID
+
+            tournaments.SaveToTournametFile(TournamentFile);
+
+            return model;
+        }
+
 
 
         #endregion
@@ -107,7 +131,7 @@ namespace AppLibrary.Connections
 
         public List<TeamModel> Teams_GetAll()
         {
-            throw new NotImplementedException();
+            return TeamFile.FullTxtFilePath().LoadFile().ConvertToTeamModels(PeopleFile);
         }
     }
 }

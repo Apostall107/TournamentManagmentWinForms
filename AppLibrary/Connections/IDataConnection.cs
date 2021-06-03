@@ -9,6 +9,7 @@ namespace AppLibrary.Connections
         PrizeModel CreatePrize(PrizeModel model);
         PersonModel CreatePerson(PersonModel model);
         TeamModel CreateTeam(TeamModel model);
+        TournamentModel CreateTournament(TournamentModel model);
         #endregion
 
 
