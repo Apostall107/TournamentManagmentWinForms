@@ -134,7 +134,7 @@ namespace TournamentManagmentWinForms.Forms
 
         private void CreateTournament_Button_Click(object sender, EventArgs e)
         {
-            //data validation
+             //data validation
 
             decimal fee = 0;
 
@@ -154,7 +154,7 @@ namespace TournamentManagmentWinForms.Forms
 
 
 
-
+            // Create tournament model
             TournamentModel tournamentModel = new TournamentModel();
 
             tournamentModel.TournamentName = TournamentName_TextBox.Text;
@@ -165,11 +165,13 @@ namespace TournamentManagmentWinForms.Forms
             tournamentModel.EnteredTeams= _SelectedTeams;
 
 
-            
 
 
 
 
+
+
+            GlobalConfig.Connection.CreateTournament(tournamentModel);
 
         }
     }

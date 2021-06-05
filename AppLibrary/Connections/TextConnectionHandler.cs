@@ -209,7 +209,6 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
         #region SaveTo...File
 
-
         public static void SaveToPrizeFile(this List<Models.PrizeModel> models, string fileName)
         {
 
@@ -226,6 +225,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
         }
 
+
         public static void SaveToPeopleFile(this List<Models.PersonModel> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -238,6 +238,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
             File.WriteAllLines(fileName.FullTxtFilePath(), lines);
         }
 
+
         public static void SaveToTeamFile(this List<Models.TeamModel> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -249,6 +250,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
             File.WriteAllLines(fileName.FullTxtFilePath(), lines);
         }
+
 
         public static void SaveToTournametFile(this List<Models.TournamentModel> models, string fileName)
         {
@@ -356,7 +358,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
             foreach (List<Models.MatchupModel> r in rounds)
             {
 
-                output += $" {r.ConvertMatchupsListToString(r)}{separator[1]}";
+                output += $" {ConvertMatchupsListToString(r)}{separator[1]}";
 
             }
 

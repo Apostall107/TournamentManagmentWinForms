@@ -81,6 +81,7 @@
     <Compile Include="ITeamRequestor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TournamentLogic.cs" />
     <EmbeddedResource Include="Forms\CreateNewPrizeForm.resx">
       <DependentUpon>CreateNewPrizeForm.cs</DependentUpon>
     </EmbeddedResource>
