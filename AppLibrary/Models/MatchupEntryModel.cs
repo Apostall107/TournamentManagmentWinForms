@@ -25,7 +25,7 @@ namespace AppLibrary.Models
         /// <summary>
         /// Represents the matchup that this team  player in prev round.(winners only possible)
         /// </summary>
-        public MatchupEntryModel ParentMatchup { get; set; }
+        public MatchupModel ParentMatchup { get; set; }
 
 
 
