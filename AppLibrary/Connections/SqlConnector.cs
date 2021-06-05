@@ -186,49 +186,49 @@ namespace AppLibrary.Connections
 
         private void SaveTournamentRounds(IDbConnection connection, TournamentModel model)
         {
-            //foreach (List<MatchupModel> round in model.Rounds)
-            //{
-            //    foreach (MatchupModel matchup in round)
-            //    {
-            //        var p = new DynamicParameters();
-            //        p.Add("@TournamentId", model.Id);
-            //        p.Add("@MatchupRound", matchup.MatchupRound);
-            //        p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+            foreach (List<MatchupModel> round in model.Rounds)
+            {
+                foreach (MatchupModel matchup in round)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@TournamentID", model.ID);
+                    p.Add("@MatchupRound", matchup.MatchupRound);
+                    p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-            //        connection.Execute("[dbo].[spMatchups_Insert]", p, commandType: CommandType.StoredProcedure);
+                    connection.Execute("[dbo].[spMatchups_Insert]", p, commandType: CommandType.StoredProcedure);
 
-            //        matchup.Id = p.Get<int>("@Id");
+                    matchup.ID = p.Get<int>("@Id");
 
-            //        foreach (MatchupEntryModel entry in matchup.Entries)
-            //        {
-            //            p = new DynamicParameters();
+                    foreach (MatchupEntryModel entry in matchup.Entries)
+                    {
+                        p = new DynamicParameters();
 
-            //            p.Add("@MatchupId", matchup.Id);
+                        p.Add("@MatchupID", matchup.ID);
 
-            //            if (entry.ParentMatchup == null)
-            //            {
-            //                p.Add("@ParentMatchupId", null);
-            //            }
-            //            else
-            //            {
-            //                p.Add("@ParentMatchupId", entry.ParentMatchup.Id);
-            //            }
+                        if (entry.ParentMatchup == null)
+                        {
+                            p.Add("@ParentMatchupID", null);
+                        }
+                        else
+                        {
+                            p.Add("@ParentMatchupID", entry.ParentMatchup.ID);
+                        }
 
-            //            if (entry.TeamCompeting == null)
-            //            {
-            //                p.Add("@TeamCompetingId", null);
-            //            }
-            //            else
-            //            {
-            //                p.Add("@TeamCompetingId", entry.TeamCompeting.Id);
-            //            }
+                        if (entry.TeamCompeting == null)
+                        {
+                            p.Add("@TeamCompetingID", null);
+                        }
+                        else
+                        {
+                            p.Add("@TeamCompetingID", entry.TeamCompeting.ID);
+                        }
 
-            //            p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                        p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-            //            connection.Execute("[dbo].[spMatchupEntries_Insert]", p, commandType: CommandType.StoredProcedure);
-            //        }
-            //    }
-            //}
+                        connection.Execute("[dbo].[spMatchupEntries_Insert]", p, commandType: CommandType.StoredProcedure);
+                    }
+                }
+            }
         }
         #endregion
 

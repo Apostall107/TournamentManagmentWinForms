@@ -165,6 +165,8 @@ namespace TournamentManagmentWinForms.Forms
             tournamentModel.EnteredTeams= _SelectedTeams;
 
 
+            TournamentLogic.CreateRounds(tournamentModel);
+
 
 
 
