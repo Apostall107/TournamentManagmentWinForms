@@ -97,10 +97,10 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
         #region Pipe Separator
 
-        public static List<Models.TournamentModel> ConvertToTournamentModels(this List<string> lines, string teamFileName, string peopleFileName, string pizesFileName)
+        public static List<Models.TournamentModel> ConvertToTournamentModels(this List<string> lines)
         {
             List<Models.TournamentModel> output = new List<Models.TournamentModel>();
-            List<Models.TeamModel> teams = GlobalConfig.TeamFile.FullTxtFilePath().LoadFile().ConvertToTeamModels(peopleFileName);
+            List<Models.TeamModel> teams = GlobalConfig.TeamFile.FullTxtFilePath().LoadFile().ConvertToTeamModels();
             List<Models.PrizeModel> prizes = GlobalConfig.PrizesFile.FullTxtFilePath().LoadFile().ConvertToPrizeModels();
             List<Models.MatchupModel> matchups = GlobalConfig.MatchupFile.FullTxtFilePath().LoadFile().ConvertToMatchupModels();
 
@@ -109,6 +109,8 @@ namespace AppLibrary.Connections.TextConnectionHandler
                 string[] columns = line.Split(separator[0]);
 
                 Models.TournamentModel tm = new Models.TournamentModel();
+
+                //TODO drops here
                 tm.ID = int.Parse(columns[0]);
                 tm.TournamentName = columns[1];
 
@@ -156,11 +158,11 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
         }
 
-        public static List<Models.TeamModel> ConvertToTeamModels(this List<string> lines, string peopleFileName)
+        public static List<Models.TeamModel> ConvertToTeamModels(this List<string> lines)
         {
 
             List<Models.TeamModel> output = new List<Models.TeamModel>();
-            List<Models.PersonModel> ppl = peopleFileName.FullTxtFilePath().LoadFile().ConvertToPersonModels();
+            List<Models.PersonModel> ppl =GlobalConfig.PeopleFile.FullTxtFilePath().LoadFile().ConvertToPersonModels();
 
 
             string[] column;
@@ -376,7 +378,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
         }
 
-        //TODO check all and fix below.
+        
         public static void SaveMatchupToFile(this Models.MatchupModel matchup)
         {
             List<Models.MatchupModel> matchups = GlobalConfig.MatchupFile.FullTxtFilePath().LoadFile().ConvertToMatchupModels();
@@ -666,7 +668,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
                     matchingTeams.Add(team);
                   
                     
-                    return matchingTeams.ConvertToTeamModels(GlobalConfig.PeopleFile).First();
+                    return matchingTeams.ConvertToTeamModels().First();
                     
                 }
 

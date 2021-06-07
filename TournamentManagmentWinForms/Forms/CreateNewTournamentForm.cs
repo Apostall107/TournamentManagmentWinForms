@@ -133,7 +133,7 @@ namespace TournamentManagmentWinForms.Forms
 
         private void CreateTournament_Button_Click(object sender, EventArgs e)
         {
-             //data validation
+            //data validation
 
             decimal fee = 0;
 
@@ -154,14 +154,13 @@ namespace TournamentManagmentWinForms.Forms
 
 
             // Create tournament model
-            TournamentModel tournamentModel = new TournamentModel();
-
-            tournamentModel.TournamentName = TournamentName_TextBox.Text;
-
-            tournamentModel.EntryFee = fee;
-
-            tournamentModel.Prizes = _SelectedPrizes;
-            tournamentModel.EnteredTeams= _SelectedTeams;
+            TournamentModel tournamentModel = new TournamentModel
+            {
+                TournamentName = TournamentName_TextBox.Text,
+                EntryFee = fee,
+                Prizes = _SelectedPrizes,
+                EnteredTeams = _SelectedTeams
+            };
 
             ///wire matchips
             TournamentLogic.CreateRounds(tournamentModel);

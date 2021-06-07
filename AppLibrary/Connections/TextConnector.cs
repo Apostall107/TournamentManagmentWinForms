@@ -78,7 +78,7 @@ namespace AppLibrary.Connections
         {
             //TODO: need to handle ID 1 team creating only.
 
-            List<Models.TeamModel> teams = TeamFile.FullTxtFilePath().LoadFile().ConvertToTeamModels(PeopleFile);//load file and convert it to List
+            List<Models.TeamModel> teams = TeamFile.FullTxtFilePath().LoadFile().ConvertToTeamModels();//load file and convert it to List
 
             int currentID = 1;
 
@@ -100,8 +100,7 @@ namespace AppLibrary.Connections
 
         public void CreateTournament(TournamentModel model)
         {
-            List<Models.TournamentModel> tournaments = TeamFile.FullTxtFilePath().LoadFile()
-                .ConvertToTournamentModels(TeamFile, PeopleFile,PrizesFile);
+            List<Models.TournamentModel> tournaments = TournamentFile.FullTxtFilePath().LoadFile().ConvertToTournamentModels();
 
             int currentID = 1;
 
@@ -135,7 +134,7 @@ namespace AppLibrary.Connections
 
         public List<TeamModel> Teams_GetAll()
         {
-            return TeamFile.FullTxtFilePath().LoadFile().ConvertToTeamModels(PeopleFile);
+            return TeamFile.FullTxtFilePath().LoadFile().ConvertToTeamModels();
         }
    
     
