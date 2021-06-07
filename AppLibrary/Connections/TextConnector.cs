@@ -136,10 +136,10 @@ namespace AppLibrary.Connections
         {
             return TeamFile.FullTxtFilePath().LoadFile().ConvertToTeamModels();
         }
-   
-    
 
-
-
+        public List<TournamentModel> Tournament_GetAll()
+        {
+            return GlobalConfig.TournamentFile.FullTxtFilePath().LoadFile().ConvertToTournamentModels();
+        }
     }
 }

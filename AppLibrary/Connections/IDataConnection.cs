@@ -16,6 +16,11 @@ namespace AppLibrary.Connections
         #region Getrers
         List<TeamModel> Teams_GetAll();
         List<PersonModel> People_GetAll();
+
+        List<TournamentModel> Tournament_GetAll();
+
+   
+
         #endregion
     }
 }

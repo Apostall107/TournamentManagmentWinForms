@@ -279,6 +279,122 @@ namespace AppLibrary.Connections
 
             return output;
         }
+
+        public List<TournamentModel> Tournament_GetAll()
+        {
+            List<TournamentModel> output;
+            var p = new DynamicParameters();
+
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
+            {
+                connection.Open();
+
+                output = connection.Query<TournamentModel>("[dbo].[spTournaments_GetAll]", commandType: CommandType.StoredProcedure).ToList();
+
+
+                foreach (TournamentModel t in output)
+                {
+                    // Populating Prizes
+                    p = new DynamicParameters();
+                    p.Add("@TournamentID", t.ID);
+
+
+                    t.Prizes = connection.Query<PrizeModel>("[dbo].[spPrizes_GetByTournament]", p, commandType: CommandType.StoredProcedure).ToList();
+
+
+                    // Populating Teams
+                    p = new DynamicParameters();
+                    p.Add("@TournamentID", t.ID);
+
+
+                    t.EnteredTeams = connection.Query<TeamModel>("[dbo].[spTeam_getByTournament]", p, commandType: CommandType.StoredProcedure).ToList();
+
+
+                    foreach (TeamModel team in t.EnteredTeams)
+                    {
+                        p = new DynamicParameters();
+                        p.Add("@TeamID", team.ID);
+
+
+                        team.TeamMembers = connection.Query<PersonModel>("[dbo].[spTeamMembers_GetByTeam]", p, commandType: CommandType.StoredProcedure).ToList();
+                    }
+
+
+                    p = new DynamicParameters();
+                    p.Add("@TournamentID", t.ID);
+
+
+                    // Populating Rounds
+                    List<MatchupModel> matchups = connection.Query<MatchupModel>("[dbo].[spMatchups_GetByTournament]", p, commandType: CommandType.StoredProcedure).ToList();
+
+
+                    foreach (MatchupModel m in matchups)
+                    {
+                        p = new DynamicParameters();
+                        p.Add("@MatchupID", m.ID);
+
+
+                        // Populating Rounds
+                        m.Entries = connection.Query<MatchupEntryModel>("[dbo].[spMatchupEntries_GetByMatchup]", p, commandType: CommandType.StoredProcedure).ToList();
+
+
+                        // Populating  entries (2 models)
+                        // Populating  matchups (1 model)
+                        List<TeamModel> allTeams = Teams_GetAll();
+
+
+                        if (m.WinnerID > 0)
+                        {
+                            m.Winner = allTeams.Where(x => x.ID == m.WinnerID).First();
+                        }
+
+
+                        foreach (var me in m.Entries)
+                        {
+                            if (me.TeamCompetingID > 0)
+                            {
+                                me.TeamCompeting = allTeams.Where(x => x.ID == me.TeamCompetingID).First();
+                            }
+
+
+                            if (me.ParentMatchupID > 0)
+                            {
+                                me.ParentMatchup = matchups.Where(x => x.ID == me.ParentMatchupID).First();
+                            }
+                        }
+                    }
+
+
+                    // List<List<MatchupModel>>
+                    List<MatchupModel> currentRow = new List<MatchupModel>();
+                    int currentRound = 1;
+
+
+                    foreach (MatchupModel m in matchups)
+                    {
+                        if (m.MatchupRound > currentRound)
+                        {
+                            t.Rounds.Add(currentRow);
+                            currentRow = new List<MatchupModel>();
+                            currentRound += 1;
+                        }
+
+
+                        currentRow.Add(m);
+                    }
+
+
+                    t.Rounds.Add(currentRow);
+                }
+            }
+
+
+            return output;
+
+
+
+        }
         #endregion
 
     }

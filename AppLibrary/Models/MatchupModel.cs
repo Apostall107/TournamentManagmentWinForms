@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AppLibrary.Models
 {
-    public class MatchupModel
-    {
+	public class MatchupModel
+	{
 
 		public int ID { get; set; }
 

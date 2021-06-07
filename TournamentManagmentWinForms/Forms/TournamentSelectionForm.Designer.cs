@@ -74,6 +74,7 @@ namespace TournamentManagmentWinForms.Forms
             this.LoadTournament_Button.TabIndex = 7;
             this.LoadTournament_Button.Text = "Load Tournament";
             this.LoadTournament_Button.UseVisualStyleBackColor = true;
+            this.LoadTournament_Button.Click += new System.EventHandler(this.LoadTournament_Button_Click);
             // 
             // CreateTournament_Button
             // 
@@ -83,6 +84,7 @@ namespace TournamentManagmentWinForms.Forms
             this.CreateTournament_Button.TabIndex = 8;
             this.CreateTournament_Button.Text = "Create Tournament";
             this.CreateTournament_Button.UseVisualStyleBackColor = true;
+            this.CreateTournament_Button.Click += new System.EventHandler(this.CreateTournament_Button_Click);
             // 
             // TournamentSelectionForm
             // 
