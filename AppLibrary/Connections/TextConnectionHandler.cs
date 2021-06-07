@@ -110,7 +110,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
                 Models.TournamentModel tm = new Models.TournamentModel();
 
-                //TODO drops here
+
                 tm.ID = int.Parse(columns[0]);
                 tm.TournamentName = columns[1];
 

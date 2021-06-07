@@ -42,10 +42,10 @@ namespace TournamentManagmentWinForms.Forms
 
         private void LoadTournament_Button_Click(object sender, EventArgs e)
         {
-            //TODO: complete wiring up
-            //TournamentModel tm = (TournamentModel)LoadExistingTournament_DropBox.SelectedItem;
-            //TournamentViewerForm frm = new TournamentViewerForm(tm);
-            //frm.Show();
+
+            TournamentModel tm = (TournamentModel)LoadExistingTournament_DropBox.SelectedItem;
+            TournamentViewerForm frm = new TournamentViewerForm(tm);
+            frm.Show();
         }
 
         private void CreateTournament_Button_Click(object sender, EventArgs e)

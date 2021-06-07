@@ -40,8 +40,8 @@ namespace TournamentManagmentWinForms
             this.VS_Label = new System.Windows.Forms.Label();
             this.FirstTeamScore_Label = new System.Windows.Forms.Label();
             this.SecondTeamScore_Label = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.FirstTeamScore_TextBox = new System.Windows.Forms.TextBox();
+            this.SecondTeamScore_TextBox = new System.Windows.Forms.TextBox();
             this.Score_Button = new System.Windows.Forms.Button();
             this.Matchup_ListBox = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
@@ -84,7 +84,7 @@ namespace TournamentManagmentWinForms
             this.Round_DropBox.Font = new System.Drawing.Font("Sitka Small", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Round_DropBox.FormattingEnabled = true;
             this.Round_DropBox.Location = new System.Drawing.Point(114, 67);
-            this.Round_DropBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Round_DropBox.Margin = new System.Windows.Forms.Padding(2);
             this.Round_DropBox.Name = "Round_DropBox";
             this.Round_DropBox.Size = new System.Drawing.Size(142, 31);
             this.Round_DropBox.TabIndex = 3;
@@ -144,19 +144,19 @@ namespace TournamentManagmentWinForms
             this.SecondTeamScore_Label.TabIndex = 9;
             this.SecondTeamScore_Label.Text = "Score:";
             // 
-            // textBox1
+            // FirstTeamScore_TextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(96, 302);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(56, 27);
-            this.textBox1.TabIndex = 10;
+            this.FirstTeamScore_TextBox.Location = new System.Drawing.Point(96, 302);
+            this.FirstTeamScore_TextBox.Name = "FirstTeamScore_TextBox";
+            this.FirstTeamScore_TextBox.Size = new System.Drawing.Size(56, 27);
+            this.FirstTeamScore_TextBox.TabIndex = 10;
             // 
-            // textBox2
+            // SecondTeamScore_TextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(370, 299);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(56, 27);
-            this.textBox2.TabIndex = 11;
+            this.SecondTeamScore_TextBox.Location = new System.Drawing.Point(370, 299);
+            this.SecondTeamScore_TextBox.Name = "SecondTeamScore_TextBox";
+            this.SecondTeamScore_TextBox.Size = new System.Drawing.Size(56, 27);
+            this.SecondTeamScore_TextBox.TabIndex = 11;
             // 
             // Score_Button
             // 
@@ -189,8 +189,8 @@ namespace TournamentManagmentWinForms
             this.ClientSize = new System.Drawing.Size(745, 460);
             this.Controls.Add(this.Matchup_ListBox);
             this.Controls.Add(this.Score_Button);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.SecondTeamScore_TextBox);
+            this.Controls.Add(this.FirstTeamScore_TextBox);
             this.Controls.Add(this.SecondTeamScore_Label);
             this.Controls.Add(this.FirstTeamScore_Label);
             this.Controls.Add(this.VS_Label);
@@ -203,7 +203,7 @@ namespace TournamentManagmentWinForms
             this.Controls.Add(this.Tournament_Label);
             this.Font = new System.Drawing.Font("Sitka Small", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "TournamentViewerForm";
             this.Text = "Tournament Viewer";
             this.ResumeLayout(false);
@@ -223,8 +223,8 @@ namespace TournamentManagmentWinForms
         private System.Windows.Forms.Label VS_Label;
         private System.Windows.Forms.Label FirstTeamScore_Label;
         private System.Windows.Forms.Label SecondTeamScore_Label;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox FirstTeamScore_TextBox;
+        private System.Windows.Forms.TextBox SecondTeamScore_TextBox;
         private System.Windows.Forms.Button Score_Button;
         private System.Windows.Forms.CheckedListBox Matchup_ListBox;
     }

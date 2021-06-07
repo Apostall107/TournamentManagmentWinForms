@@ -117,7 +117,7 @@ namespace AppLibrary.Connections
                 connection.Open();
 
 
-                // TODO: matchups and EntryMatchUPs dont save to SQL. fix it;
+                
 
                 SaveTournament(connection, model);
 
