@@ -98,9 +98,9 @@ namespace AppLibrary.Connections
             return model;
         }
 
-        public TournamentModel CreateTournament(TournamentModel model)
+        public void CreateTournament(TournamentModel model)
         {
-            List<Models.TournamentModel> tournaments = GlobalConfig.TournamentFile.FullTxtFilePath().LoadFile()
+            List<Models.TournamentModel> tournaments = TeamFile.FullTxtFilePath().LoadFile()
                 .ConvertToTournamentModels(TeamFile, PeopleFile,PrizesFile);
 
             int currentID = 1;
@@ -120,7 +120,7 @@ namespace AppLibrary.Connections
 
             tournaments.SaveToTournametFile(TournamentFile);
 
-            return model;
+            
         }
 
 

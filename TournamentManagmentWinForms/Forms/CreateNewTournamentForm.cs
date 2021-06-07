@@ -88,7 +88,6 @@ namespace TournamentManagmentWinForms.Forms
 
         private void CreatePrize_Button_Click(object sender, EventArgs e)
         {
-            //TODO: Prize list box visualization of PlaceName bug fix
 
             CreateNewPrizeForm cnpf = new CreateNewPrizeForm(this); //this - is this specific instance
 

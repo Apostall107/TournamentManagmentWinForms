@@ -73,7 +73,7 @@ namespace TournamentManagmentWinForms
 
             foreach (var team in teams)
             {
-
+                curr.Entries.Add(new AppLibrary.Models.MatchupEntryModel { TeamCompeting = team });
 
                 if (roundSkips > 0 || curr.Entries.Count > 1)
                 {
@@ -93,7 +93,7 @@ namespace TournamentManagmentWinForms
                 }
 
 
-                return output;
+                
             }
 
 

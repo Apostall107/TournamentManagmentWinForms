@@ -108,7 +108,7 @@ namespace AppLibrary.Connections
             }
         }
 
-        public TournamentModel CreateTournament(TournamentModel model)
+        public void CreateTournament(TournamentModel model)
         {
          
             
@@ -128,8 +128,6 @@ namespace AppLibrary.Connections
                 SaveTournamentRounds(connection, model);
 
             
-
-                return model;
             }
         }
 
