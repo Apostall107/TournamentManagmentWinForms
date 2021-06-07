@@ -111,7 +111,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
                 Models.TournamentModel tm = new Models.TournamentModel();
                 tm.ID = int.Parse(columns[0]);
                 tm.TournamentName = columns[1];
-              
+
                 tm.EntryFee = decimal.Parse(columns[2]);
 
                 string[] teamIds = columns[3].Split(separator[1]);
@@ -131,7 +131,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
                     }
                 }
 
-            
+
 
                 // Capture Rounds info / populating all our rounds
                 string[] rounds = columns[5].Split(separator[1]);
@@ -253,14 +253,14 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
             foreach (string line in lines)
             {
-            
-                
+
+
                 string[] columns = line.Split(separator[0]);
 
                 var m = new Models.MatchupModel();
 
                 m.ID = int.Parse(columns[0]); ;
-                m.Entries = ConvertStingToMatchupEntryModels(columns[1]  );
+                m.Entries = ConvertStingToMatchupEntryModels(columns[1]);
 
                 if (columns[2].Length == 0)
                 {
@@ -371,7 +371,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
 
                 }
-            
+
             }
 
         }
@@ -391,22 +391,8 @@ namespace AppLibrary.Connections.TextConnectionHandler
             matchup.ID = currentID;
 
             matchups.Add(matchup);
-            //savin it to file
-            List<string> lines = new List<string>();
 
-            foreach (Models.MatchupModel m in matchups)
-            {
-                string winner = "";
-                if (m.Winner != null)
-                {
-                    winner = m.Winner.ID.ToString();
-                }
-                lines.Add($"{ m.ID },{ "" },{ winner },{ m.MatchupRound }");
-            }
 
-            File.WriteAllLines(GlobalConfig.MatchupFile.FullTxtFilePath(), lines);
-
-          
 
             foreach (Models.MatchupEntryModel entry in matchup.Entries)
             {
@@ -415,7 +401,7 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
 
             //savin it to file
-            lines = new List<string>();
+            List<string> lines = new List<string>();
 
             foreach (Models.MatchupModel m in matchups)
             {
@@ -468,15 +454,15 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
                 lines.Add($"{ e.ID },{ teamCompeting },{ e.Score },{ parent }");
             }
-            
-            
+
+
             File.WriteAllLines(GlobalConfig.MatchupEntryFile.FullTxtFilePath(), lines);
-            
+
         }
 
         public static void UpdateEntryToFile(this Models.MatchupEntryModel entry)
         {
-           
+
         }
         #endregion
 
@@ -636,15 +622,26 @@ namespace AppLibrary.Connections.TextConnectionHandler
             //TODO check
             string[] ids = input.Split(separator[1]);
             List<Models.MatchupEntryModel> output = new List<Models.MatchupEntryModel>();
-            List<Models.MatchupEntryModel> entries = GlobalConfig.MatchupEntryFile.FullTxtFilePath().LoadFile().ConvertToMatchupEntryModels();
-
+            List<string> entries = GlobalConfig.MatchupEntryFile.FullTxtFilePath().LoadFile();
+            List<string> matchingEntries = new List<string>();
 
             foreach (string id in ids)
             {
+                foreach (string entry in entries)
+                {
+                    string[] columns = entry.Split(separator[0]);
 
-                output.Add(entries.Where(x => x.ID == int.Parse(id)).First());
+                    if (columns[0] == id)
+                    {
 
+                        matchingEntries.Add(entry);
+
+                    }
+
+                }
             }
+
+            output = matchingEntries.ConvertToMatchupEntryModels();
 
             return output;
         }
@@ -652,19 +649,56 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
         private static Models.TeamModel LookupTeamById(int ID)
         {
-            List<Models.TeamModel> teams = GlobalConfig.TeamFile.FullTxtFilePath().LoadFile().ConvertToTeamModels(GlobalConfig.PeopleFile);
+         
+            List<string> teams = GlobalConfig.TeamFile.FullTxtFilePath().LoadFile();
 
 
-                    return teams.Where(x => x.ID == ID) .First();
-        
+            foreach (string team in teams)
+            {
+              
+              
+                string[] columns = team.Split(separator[0]);
+
+                if (columns[0] == ID.ToString())
+                {
+
+                    List<string> matchingTeams = new List<string>();
+                    matchingTeams.Add(team);
+                  
+                    
+                    return matchingTeams.ConvertToTeamModels(GlobalConfig.PeopleFile).First();
+                    
+                }
+
+
+            }
+
+            return null;
+
         }
 
         private static Models.MatchupModel LookupMatchupById(int ID)
         {
-            List<Models.MatchupModel> matchups = GlobalConfig.MatchupFile.FullTxtFilePath().LoadFile().ConvertToMatchupModels();
+            List<string> matchups = GlobalConfig.MatchupFile.FullTxtFilePath().LoadFile();
 
 
-            return matchups.Where(x => x.ID == ID).First();
+            foreach (string matchup in matchups)
+            {
+               
+                string[] cols = matchup.Split(',');
+
+                if (cols[0] == ID.ToString())
+                {
+                   
+                    List<string> matchingMatchups = new List<string>();
+                    matchingMatchups.Add(matchup);
+                    return matchingMatchups.ConvertToMatchupModels().First();
+
+                }
+
+            }
+
+            return null;
         }
 
 

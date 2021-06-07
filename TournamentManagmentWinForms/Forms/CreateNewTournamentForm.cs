@@ -164,7 +164,7 @@ namespace TournamentManagmentWinForms.Forms
             tournamentModel.Prizes = _SelectedPrizes;
             tournamentModel.EnteredTeams= _SelectedTeams;
 
-
+            ///wire matchips
             TournamentLogic.CreateRounds(tournamentModel);
 
 
