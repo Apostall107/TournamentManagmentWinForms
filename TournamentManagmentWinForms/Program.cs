@@ -19,7 +19,7 @@ namespace TournamentManagmentWinForms
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            AppLibrary.GlobalConfig.InitializeConnection(AppLibrary.DataStorageType.TextFile);
+            AppLibrary.GlobalConfig.InitializeConnection(AppLibrary.DataStorageType.SQL);
 
             Application.Run(new CreateNewTournamentForm());
         }

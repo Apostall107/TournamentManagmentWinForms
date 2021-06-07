@@ -127,16 +127,7 @@ namespace AppLibrary.Connections
 
                 SaveTournamentRounds(connection, model);
 
-              //  TournamentLogic.UpdateTournamentResults(model);
-
-
-
-
-
-
-
-
-
+            
 
                 return model;
             }

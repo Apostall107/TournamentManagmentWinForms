@@ -33,8 +33,8 @@ namespace TournamentManagmentWinForms.Forms
             {
 
                 PrizeModel model = new PrizeModel(
-                    PlaceName_TextBox.Text,
                     PlaceNumber_TextBox.Text,
+                    PlaceName_TextBox.Text,
                     PrizeAmount_TextBox.Text,
                     PrizePercentage_TextBox.Text);
 
