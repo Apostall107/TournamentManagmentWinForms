@@ -114,18 +114,18 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
                 tm.EntryFee = decimal.Parse(columns[2]);
 
-                string[] teamIds = columns[3].Split(separator[1]);
+                string[] teamIDs = columns[3].Split(separator[1]);
 
-                foreach (string Id in teamIds)
+                foreach (string Id in teamIDs)
                 {
                     tm.EnteredTeams.Add(teams.Where(x => x.ID == int.Parse(Id)).First());
                 }
 
                 if (columns[4].Length > 0)
                 {
-                    string[] prizeIds = columns[4].Split(separator[1]);
+                    string[] prizeIDs = columns[4].Split(separator[1]);
 
-                    foreach (string Id in prizeIds)
+                    foreach (string Id in prizeIDs)
                     {
                         tm.Prizes.Add(prizes.Where(x => x.ID == int.Parse(Id)).First());
                     }
@@ -346,12 +346,12 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
             foreach (Models.TournamentModel tournamentM in models)
             {
-                lines.Add($@"{ tournamentM.ID },
-                                      { tournamentM.TournamentName },
-                                      { tournamentM.EntryFee },
-                                      { ConvertTeamListToString(tournamentM.EnteredTeams) }, 
-                                      { ConvertPrizeListToString(tournamentM.Prizes) },
-                                      { "" }");
+                lines.Add($"{ tournamentM.ID }," +
+                    $"{ tournamentM.TournamentName }," +
+                    $"{ tournamentM.EntryFee }," +
+                    $"{ ConvertTeamListToString(tournamentM.EnteredTeams) }," +
+                    $"{ ConvertPrizeListToString(tournamentM.Prizes) }," +
+                    $"{ "" }");
             }
 
             File.WriteAllLines(fileName.FullTxtFilePath(), lines);
