@@ -168,11 +168,6 @@ namespace TournamentManagmentWinForms.Forms
             TournamentLogic.CreateRounds(tournamentModel);
 
 
-
-
-
-
-
             GlobalConfig.Connection.CreateTournament(tournamentModel);
 
         }

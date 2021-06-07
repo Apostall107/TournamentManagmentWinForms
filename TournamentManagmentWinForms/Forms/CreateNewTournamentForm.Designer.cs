@@ -62,7 +62,7 @@ namespace TournamentManagmentWinForms.Forms
             // 
             // AddTeam_Button
             // 
-            this.AddTeam_Button.Location = new System.Drawing.Point(27, 481);
+            this.AddTeam_Button.Location = new System.Drawing.Point(27, 465);
             this.AddTeam_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AddTeam_Button.Name = "AddTeam_Button";
             this.AddTeam_Button.Size = new System.Drawing.Size(112, 37);
@@ -73,7 +73,7 @@ namespace TournamentManagmentWinForms.Forms
             // 
             // CreatePrize_Button
             // 
-            this.CreatePrize_Button.Location = new System.Drawing.Point(147, 481);
+            this.CreatePrize_Button.Location = new System.Drawing.Point(147, 465);
             this.CreatePrize_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CreatePrize_Button.Name = "CreatePrize_Button";
             this.CreatePrize_Button.Size = new System.Drawing.Size(112, 37);
@@ -117,14 +117,14 @@ namespace TournamentManagmentWinForms.Forms
             // 
             // TournamentName_TextBox
             // 
-            this.TournamentName_TextBox.Location = new System.Drawing.Point(28, 131);
+            this.TournamentName_TextBox.Location = new System.Drawing.Point(28, 156);
             this.TournamentName_TextBox.Name = "TournamentName_TextBox";
             this.TournamentName_TextBox.Size = new System.Drawing.Size(230, 29);
             this.TournamentName_TextBox.TabIndex = 7;
             // 
             // EntryFee_TextBox
             // 
-            this.EntryFee_TextBox.Location = new System.Drawing.Point(107, 184);
+            this.EntryFee_TextBox.Location = new System.Drawing.Point(107, 209);
             this.EntryFee_TextBox.Name = "EntryFee_TextBox";
             this.EntryFee_TextBox.Size = new System.Drawing.Size(151, 29);
             this.EntryFee_TextBox.TabIndex = 8;
@@ -133,7 +133,7 @@ namespace TournamentManagmentWinForms.Forms
             // TournamentName_Label
             // 
             this.TournamentName_Label.AutoSize = true;
-            this.TournamentName_Label.Location = new System.Drawing.Point(24, 107);
+            this.TournamentName_Label.Location = new System.Drawing.Point(24, 132);
             this.TournamentName_Label.Name = "TournamentName_Label";
             this.TournamentName_Label.Size = new System.Drawing.Size(142, 21);
             this.TournamentName_Label.TabIndex = 9;
@@ -142,7 +142,7 @@ namespace TournamentManagmentWinForms.Forms
             // EntryFee_Label
             // 
             this.EntryFee_Label.AutoSize = true;
-            this.EntryFee_Label.Location = new System.Drawing.Point(24, 187);
+            this.EntryFee_Label.Location = new System.Drawing.Point(24, 212);
             this.EntryFee_Label.Name = "EntryFee_Label";
             this.EntryFee_Label.Size = new System.Drawing.Size(77, 21);
             this.EntryFee_Label.TabIndex = 10;
@@ -151,7 +151,7 @@ namespace TournamentManagmentWinForms.Forms
             // SelectTeam_Label
             // 
             this.SelectTeam_Label.AutoSize = true;
-            this.SelectTeam_Label.Location = new System.Drawing.Point(24, 264);
+            this.SelectTeam_Label.Location = new System.Drawing.Point(24, 289);
             this.SelectTeam_Label.Name = "SelectTeam_Label";
             this.SelectTeam_Label.Size = new System.Drawing.Size(91, 21);
             this.SelectTeam_Label.TabIndex = 11;
@@ -196,7 +196,7 @@ namespace TournamentManagmentWinForms.Forms
             // SelectTeam_DropBox
             // 
             this.SelectTeam_DropBox.FormattingEnabled = true;
-            this.SelectTeam_DropBox.Location = new System.Drawing.Point(28, 292);
+            this.SelectTeam_DropBox.Location = new System.Drawing.Point(28, 317);
             this.SelectTeam_DropBox.Name = "SelectTeam_DropBox";
             this.SelectTeam_DropBox.Size = new System.Drawing.Size(230, 29);
             this.SelectTeam_DropBox.TabIndex = 16;
@@ -206,7 +206,7 @@ namespace TournamentManagmentWinForms.Forms
             // 
             this.CreateTeam_LinkLabel.AutoSize = true;
             this.CreateTeam_LinkLabel.LinkColor = System.Drawing.Color.Blue;
-            this.CreateTeam_LinkLabel.Location = new System.Drawing.Point(177, 264);
+            this.CreateTeam_LinkLabel.Location = new System.Drawing.Point(177, 289);
             this.CreateTeam_LinkLabel.Name = "CreateTeam_LinkLabel";
             this.CreateTeam_LinkLabel.Size = new System.Drawing.Size(82, 21);
             this.CreateTeam_LinkLabel.TabIndex = 17;
@@ -215,7 +215,7 @@ namespace TournamentManagmentWinForms.Forms
             // 
             // CreateTeam_Button
             // 
-            this.CreateTeam_Button.Location = new System.Drawing.Point(92, 337);
+            this.CreateTeam_Button.Location = new System.Drawing.Point(92, 362);
             this.CreateTeam_Button.Name = "CreateTeam_Button";
             this.CreateTeam_Button.Size = new System.Drawing.Size(112, 35);
             this.CreateTeam_Button.TabIndex = 18;

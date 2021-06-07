@@ -21,6 +21,8 @@ namespace AppLibrary.Connections
         private const string PeopleFile = "PersonModels.csv";
         private const string TeamFile = "TeamModels.csv";
         private const string  TournamentFile = "TournamentModel.csv";
+        private const string  MatchupFile = "MatchupModel.csv";
+        private const string  MatchupEntryFile = "MatchupEntryModel.csv";
 
         #endregion
 
@@ -98,7 +100,7 @@ namespace AppLibrary.Connections
 
         public TournamentModel CreateTournament(TournamentModel model)
         {
-            List<Models.TournamentModel> tournaments = TeamFile.FullTxtFilePath().LoadFile()
+            List<Models.TournamentModel> tournaments = GlobalConfig.TournamentFile.FullTxtFilePath().LoadFile()
                 .ConvertToTournamentModels(TeamFile, PeopleFile,PrizesFile);
 
             int currentID = 1;
@@ -111,6 +113,8 @@ namespace AppLibrary.Connections
 
             model.ID = currentID;
 
+
+            model.SoveRoundsToFile();
 
             tournaments.Add(model);//add new recorn with incremented ID
 
@@ -133,5 +137,10 @@ namespace AppLibrary.Connections
         {
             return TeamFile.FullTxtFilePath().LoadFile().ConvertToTeamModels(PeopleFile);
         }
+   
+    
+
+
+
     }
 }

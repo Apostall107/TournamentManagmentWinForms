@@ -7,6 +7,20 @@ namespace AppLibrary
     public static class GlobalConfig
     {
 
+
+        #region Filespath strings
+
+
+        public const string PrizesFile = "PrizeModels.csv";
+        public const string PeopleFile = "PersonModels.csv";
+        public const string TeamFile = "TeamModels.csv";
+        public const string TournamentFile = "TournamentModel.csv";
+        public const string MatchupFile = "MatchupModel.csv";
+        public const string MatchupEntryFile = "MatchupEntryModel.csv";
+
+        #endregion
+
+
         /// <summary>
         /// will not work till .NET 4.6
         /// </summary>

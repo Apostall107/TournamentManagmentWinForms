@@ -29,7 +29,7 @@ namespace AppLibrary.Connections
                 p.Add("@FirstName", model.FirstName);
                 p.Add("@LastName", model.LastName);
                 p.Add("@Email", model.Email);
-                p.Add("@PhoneNum", model.PhoneNum);
+                p.Add("@PhoneNumber", model.PhoneNumber);
                 p.Add("@ID", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
 
@@ -110,12 +110,14 @@ namespace AppLibrary.Connections
 
         public TournamentModel CreateTournament(TournamentModel model)
         {
+         
+            
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
             {
                 connection.Open();
 
 
-
+                // TODO: matchups and EntryMatchUPs dont save to SQL. fix it;
 
                 SaveTournament(connection, model);
 
@@ -177,7 +179,7 @@ namespace AppLibrary.Connections
 
                 var p = new DynamicParameters();
                 p.Add(("@TournamentID"), model.ID);
-                p.Add(("@PrizeID"), team.ID);
+                p.Add(("@TeamID"), team.ID);
 
                 p.Add("@ID", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
                 connection.Execute("dbo.spTournamentEntries_Insert", p, commandType: CommandType.StoredProcedure);
@@ -190,20 +192,26 @@ namespace AppLibrary.Connections
             {
                 foreach (MatchupModel matchup in round)
                 {
+
+
                     var p = new DynamicParameters();
                     p.Add("@TournamentID", model.ID);
                     p.Add("@MatchupRound", matchup.MatchupRound);
-                    p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                    p.Add("@ID", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-                    connection.Execute("[dbo].[spMatchups_Insert]", p, commandType: CommandType.StoredProcedure);
+                    connection.Execute("dbo.spMatchups_Insert", p, commandType: CommandType.StoredProcedure);
 
-                    matchup.ID = p.Get<int>("@Id");
+                    matchup.ID = p.Get<int>("@ID");
 
+                 
                     foreach (MatchupEntryModel entry in matchup.Entries)
                     {
+                       
                         p = new DynamicParameters();
 
                         p.Add("@MatchupID", matchup.ID);
+
+
 
                         if (entry.ParentMatchup == null)
                         {
@@ -214,6 +222,8 @@ namespace AppLibrary.Connections
                             p.Add("@ParentMatchupID", entry.ParentMatchup.ID);
                         }
 
+
+
                         if (entry.TeamCompeting == null)
                         {
                             p.Add("@TeamCompetingID", null);
@@ -223,9 +233,13 @@ namespace AppLibrary.Connections
                             p.Add("@TeamCompetingID", entry.TeamCompeting.ID);
                         }
 
-                        p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-                        connection.Execute("[dbo].[spMatchupEntries_Insert]", p, commandType: CommandType.StoredProcedure);
+
+                        p.Add("@ID", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                        connection.Execute("dbo.spMatchupEntries_Insert", p, commandType: CommandType.StoredProcedure);
+
+
                     }
                 }
             }

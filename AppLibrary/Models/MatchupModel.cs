@@ -8,21 +8,31 @@ namespace AppLibrary.Models
 {
     public class MatchupModel
     {
-        public int ID { get; set; }
-        public List<MatchupEntryModel> Entries { get; set; } = new List<MatchupEntryModel>();
+
+		public int ID { get; set; }
+
+		/// <summary>
+		/// The set of teams that were involved in this match.
+		/// </summary>
+		public List<MatchupEntryModel> Entries { get; set; } = new List<MatchupEntryModel>();
+
+		/// <summary>
+		/// The ID from the database that will be used to identify the winner.
+		/// </summary>
+		public int WinnerID { get; set; }
 
 
-        /// <summary>
-        /// Represents the team that won tournament .
-        /// </summary>
-        public TeamModel Winner { get; set; }
-
-        /// <summary>
-        /// Matchup round counter.
-        /// </summary>
-        public int MatchupRound { get; set; }
 
 
+		public TeamModel Winner { get; set; }
 
-    }
+
+		/// <summary>
+		/// Which round this match is part of.
+		/// </summary>
+		public int MatchupRound { get; set; }
+
+
+
+	}
 }

@@ -80,7 +80,7 @@ namespace TournamentManagmentWinForms.Forms
                 person.FirstName = FirstName_TextBox.Text;
                 person.LastName = LastName_TextBox.Text;
                 person.Email = Email_TextBox.Text;
-                person.PhoneNum = PhoneNum_TextBox.Text;
+                person.PhoneNumber = PhoneNum_TextBox.Text;
 
                 GlobalConfig.Connection.CreatePerson(person);
 
