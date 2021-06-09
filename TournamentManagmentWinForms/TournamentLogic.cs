@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace TournamentManagmentWinForms
+namespace TournamentManagementWinForms
 {
     public static class TournamentLogic
     {

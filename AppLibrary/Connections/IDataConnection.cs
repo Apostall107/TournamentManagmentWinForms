@@ -5,13 +5,15 @@ namespace AppLibrary.Connections
 {
     public interface IDataConnection
     {
+
+        void UpdateMatchup(MatchupModel model);
+
         #region Creators
         PrizeModel CreatePrize(PrizeModel model);
         PersonModel CreatePerson(PersonModel model);
         TeamModel CreateTeam(TeamModel model);
         void CreateTournament(TournamentModel model);
         #endregion
-
 
         #region Getrers
         List<TeamModel> Teams_GetAll();

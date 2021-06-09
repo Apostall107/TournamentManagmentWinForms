@@ -397,5 +397,37 @@ namespace AppLibrary.Connections
         }
         #endregion
 
+
+
+        public void UpdateMatchup(MatchupModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
+            {
+                var p = new DynamicParameters();
+
+                if (model.Winner != null)
+                {
+                    p.Add("@ID", model.ID);
+                    p.Add("@WinnerID", model.Winner.ID);
+
+                    connection.Execute("dbo.spMatchups_Update", p, commandType: CommandType.StoredProcedure);
+                }
+
+                foreach (MatchupEntryModel me in model.Entries)
+                {
+                    if (me.TeamCompeting != null)
+                    {
+                        p = new DynamicParameters();
+                        p.Add("@ID", me.ID);
+                        p.Add("@TeamCompetingID", me.TeamCompeting.ID);
+                        p.Add("@Score", me.Score);
+
+                        connection.Execute("dbo.spMatchupEntries_Update", p, commandType: CommandType.StoredProcedure);
+                    }
+                }
+            }
+        }
+
+
     }
 }

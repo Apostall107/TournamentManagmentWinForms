@@ -9,12 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TournamentManagmentWinForms
+namespace TournamentManagementWinForms
 {
     public partial class TournamentViewerForm : Form
     {
         private TournamentModel _Tournament;
-        List<int> _Rounds = new List<int>();
+        BindingList<int> _Rounds = new BindingList<int>();
         BindingList<MatchupModel> _SelectedMatchups = new BindingList<MatchupModel>();
         public TournamentViewerForm(AppLibrary.Models.TournamentModel tournamentModel)
         {
@@ -34,6 +34,7 @@ namespace TournamentManagmentWinForms
         private void WireUpLists()
         {
             Round_DropBox.DataSource = _Rounds;
+            
             Matchup_ListBox.DataSource = _SelectedMatchups;
             Matchup_ListBox.DisplayMember = "DisplayName";
         }
@@ -50,20 +51,34 @@ namespace TournamentManagmentWinForms
             _Rounds.Clear();
 
             _Rounds.Add(1);
-            int currRound = 1;
+            int currentRound = 1;
 
             foreach (List<MatchupModel> matchups in _Tournament.Rounds)
             {
-                if (matchups.First().MatchupRound > currRound)
+                if (matchups.First().MatchupRound > currentRound)
                 {
-                    currRound = matchups.First().MatchupRound;
-                    _Rounds.Add(currRound);
+                    currentRound = matchups.First().MatchupRound;
+                    _Rounds.Add(currentRound);
                 }
             }
 
             LoadMatchups(1);
 
 
+        }
+
+        private void Unplayed_CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadMatchups((int)Round_DropBox.SelectedItem);
+        }
+        private void Round_DropBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadMatchups((int)Round_DropBox.SelectedItem);
+        }
+
+        private void Matchup_ListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadMatchup((MatchupModel)Matchup_ListBox.SelectedItem);
         }
 
         private void LoadMatchups(int round)
@@ -92,7 +107,7 @@ namespace TournamentManagmentWinForms
         }
 
 
-        private void DisplayMatchupInfo()//
+        private void DisplayMatchupInfo()
         {
             bool isVisible = (_SelectedMatchups.Count > 0);
 
@@ -117,7 +132,7 @@ namespace TournamentManagmentWinForms
                         FirstTeam_Label.Text = m.Entries[0].TeamCompeting.TeamName;
                         FirstTeamScore_TextBox.Text = m.Entries[0].Score.ToString();
 
-                        SecondTeam_Label.Text = "<bye>";
+                        SecondTeam_Label.Text = "<none>";
                         SecondTeamScore_TextBox.Text = "0";
                     }
                     else
@@ -142,6 +157,95 @@ namespace TournamentManagmentWinForms
                 }
             }
         }
+
+        private void Score_Button_Click(object sender, EventArgs e)
+        {
+            string errorMessage = ValidateData();
+
+            if (errorMessage.Length > 0)
+            {
+                MessageBox.Show($"Input Error: { errorMessage }");
+                return;
+            }
+
+            MatchupModel m = (MatchupModel)Matchup_ListBox.SelectedItem;
+            double teamOneScore = 0;
+            double teamTwoScore = 0;
+
+            for (int i = 0; i < m.Entries.Count; i++)
+            {
+                if (i == 0)
+                {
+                    if (m.Entries[0].TeamCompeting != null)
+                    {
+                        bool scoreValid = double.TryParse(FirstTeamScore_TextBox.Text, out teamOneScore);
+
+                        if (scoreValid)
+                        {
+                            m.Entries[0].Score = teamOneScore;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please enter a valid score for first team.");
+                            return;
+                        }
+                    }
+                }
+
+                if (i == 1)
+                {
+                    if (m.Entries[1].TeamCompeting != null)
+                    {
+                        bool scoreValid = double.TryParse(SecondTeamScore_TextBox.Text, out teamTwoScore);
+
+                        if (scoreValid)
+                        {
+                            m.Entries[1].Score = teamTwoScore;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please enter a valid score for second team.");
+                            return;
+                        }
+                    }
+                }
+            }
+
+        
+
+            LoadMatchups((int)Round_DropBox.SelectedItem);
+        }
+
+        private string ValidateData()
+        {
+            string output = "";
+
+            double teamOneScore = 0;
+            double teamTwoScore = 0;
+
+            bool scoreOneValid = double.TryParse(FirstTeamScore_TextBox.Text, out teamOneScore);
+            bool scoreTwoValid = double.TryParse(SecondTeamScore_TextBox.Text, out teamTwoScore);
+
+            if (!scoreOneValid)
+            {
+                output = "The first team score  value is not a valid .";
+            }
+            else if (!scoreTwoValid)
+            {
+                output = "The second team score value is not a valid .";
+            }
+            else if (teamOneScore == 0 && teamTwoScore == 0)
+            {
+                output = "You did not enter a score for either team.";
+            }
+            else if (teamOneScore == teamTwoScore)
+            {
+                output = "We do not allow ties in this application.";
+            }
+
+            return output;
+        }
+
 
 
 

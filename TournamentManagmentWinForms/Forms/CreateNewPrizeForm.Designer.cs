@@ -1,5 +1,5 @@
 ﻿
-namespace TournamentManagmentWinForms.Forms
+namespace TournamentManagementWinForms.Forms
 {
     partial class CreateNewPrizeForm
     {

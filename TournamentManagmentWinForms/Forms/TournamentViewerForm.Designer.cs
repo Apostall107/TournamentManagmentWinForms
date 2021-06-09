@@ -1,5 +1,5 @@
 ﻿
-namespace TournamentManagmentWinForms
+namespace TournamentManagementWinForms
 {
     partial class TournamentViewerForm
     {
@@ -171,6 +171,7 @@ namespace TournamentManagmentWinForms
             this.Score_Button.TabIndex = 12;
             this.Score_Button.Text = "Score";
             this.Score_Button.UseVisualStyleBackColor = false;
+            this.Score_Button.Click += new System.EventHandler(this.Score_Button_Click);
             // 
             // Matchup_ListBox
             // 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AppLibrary.Models;
 
-namespace TournamentManagmentWinForms
+namespace TournamentManagementWinForms
 {
     public interface IPrizeRequestor
     {

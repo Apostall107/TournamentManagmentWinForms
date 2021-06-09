@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TournamentManagmentWinForms
+namespace TournamentManagementWinForms
 {
     public interface ITeamRequestor
     {

@@ -11,7 +11,7 @@ using AppLibrary;
 using AppLibrary.Models;
 
 
-namespace TournamentManagmentWinForms.Forms
+namespace TournamentManagementWinForms.Forms
 {
     public partial class TournamentSelectionForm : Form
     {

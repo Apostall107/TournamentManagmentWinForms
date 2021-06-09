@@ -13,7 +13,7 @@ using AppLibrary.Connections;
 
 
 
-namespace TournamentManagmentWinForms.Forms
+namespace TournamentManagementWinForms.Forms
 {
     public partial class CreateNewPrizeForm : Form
     {

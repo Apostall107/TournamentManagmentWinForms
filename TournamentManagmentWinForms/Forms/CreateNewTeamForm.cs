@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using AppLibrary;
 using AppLibrary.Models;
 
-namespace TournamentManagmentWinForms.Forms
+namespace TournamentManagementWinForms.Forms
 {
     public partial class CreateNewTeamForm : Form
     {
