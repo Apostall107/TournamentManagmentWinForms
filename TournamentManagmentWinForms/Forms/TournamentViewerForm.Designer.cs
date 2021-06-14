@@ -88,6 +88,7 @@ namespace TournamentManagementWinForms
             this.Round_DropBox.Name = "Round_DropBox";
             this.Round_DropBox.Size = new System.Drawing.Size(142, 31);
             this.Round_DropBox.TabIndex = 3;
+            this.Round_DropBox.SelectedIndexChanged += new System.EventHandler(this.Round_DropBox_SelectedIndexChanged);
             // 
             // Unplayed_CheckBox
             // 
@@ -98,6 +99,7 @@ namespace TournamentManagementWinForms
             this.Unplayed_CheckBox.TabIndex = 4;
             this.Unplayed_CheckBox.Text = "Unplayed Only";
             this.Unplayed_CheckBox.UseVisualStyleBackColor = true;
+            this.Unplayed_CheckBox.CheckedChanged += new System.EventHandler(this.Unplayed_CheckBox_CheckedChanged);
             // 
             // FirstTeam_Label
             // 
@@ -181,6 +183,7 @@ namespace TournamentManagementWinForms
             this.Matchup_ListBox.Name = "Matchup_ListBox";
             this.Matchup_ListBox.Size = new System.Drawing.Size(280, 420);
             this.Matchup_ListBox.TabIndex = 13;
+            this.Matchup_ListBox.SelectedIndexChanged += new System.EventHandler(this.Matchup_ListBox_SelectedIndexChanged);
             // 
             // TournamentViewerForm
             // 

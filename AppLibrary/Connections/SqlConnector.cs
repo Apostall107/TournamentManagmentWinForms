@@ -117,8 +117,6 @@ namespace AppLibrary.Connections
                 connection.Open();
 
 
-                
-
                 SaveTournament(connection, model);
 
                 SaveTournamentPrizes(connection, model);
@@ -403,6 +401,9 @@ namespace AppLibrary.Connections
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
             {
+
+                connection.Open();
+
                 var p = new DynamicParameters();
 
                 if (model.Winner != null)

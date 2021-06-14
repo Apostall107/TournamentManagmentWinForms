@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using AppLibrary.Models;
 
 namespace TournamentManagementWinForms
 {
@@ -24,8 +24,42 @@ namespace TournamentManagementWinForms
 
             CreateOtherRounds(model, rounds);
 
+            UpdateTournamentResults(model);
+
 
         }
+
+
+        public static void UpdateTournamentResults(TournamentModel model)
+        {
+            int startingRound = model.CheckCurrentRound();
+            List<MatchupModel> toScore = new List<MatchupModel>();
+
+            foreach (List<MatchupModel> round in model.Rounds)
+            {
+                foreach (MatchupModel rm in round)
+                {
+                    if (rm.Winner == null && (rm.Entries.Any(x => x.Score != 0) || rm.Entries.Count == 1))
+                    {
+                        toScore.Add(rm);
+                    }
+                }
+            }
+
+            MarkWinnersInMatchups(toScore);
+
+            AdvancedWinners(toScore, model);
+
+            toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchup(x));
+
+            int endingRound = model.CheckCurrentRound();
+
+            if (endingRound > startingRound)
+            {
+                model.AlertUsersToNewRound();
+            }
+        }
+
 
 
         private static void CreateOtherRounds(AppLibrary.Models.TournamentModel model, int rounds)
@@ -144,6 +178,8 @@ namespace TournamentManagementWinForms
             return teams.OrderBy(x => Guid.NewGuid()).ToList();
 
         }
+
+
 
 
 
