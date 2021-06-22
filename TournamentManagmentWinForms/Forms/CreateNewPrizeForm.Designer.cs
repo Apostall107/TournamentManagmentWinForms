@@ -50,9 +50,9 @@ namespace TournamentManagementWinForms.Forms
             this.CreatePrize_HeaderLabel.Location = new System.Drawing.Point(37, 9);
             this.CreatePrize_HeaderLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.CreatePrize_HeaderLabel.Name = "CreatePrize_HeaderLabel";
-            this.CreatePrize_HeaderLabel.Size = new System.Drawing.Size(332, 71);
+            this.CreatePrize_HeaderLabel.Size = new System.Drawing.Size(326, 71);
             this.CreatePrize_HeaderLabel.TabIndex = 3;
-            this.CreatePrize_HeaderLabel.Text = "Create Team";
+            this.CreatePrize_HeaderLabel.Text = "Create Prize";
             // 
             // PlaceNumber_Label
             // 

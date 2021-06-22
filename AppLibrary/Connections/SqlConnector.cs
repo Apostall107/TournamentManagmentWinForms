@@ -17,7 +17,7 @@ namespace AppLibrary.Connections
 
         #region Creators
 
-        public PersonModel CreatePerson(PersonModel model)
+        public void CreatePerson(PersonModel model)
         {
 
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
@@ -39,8 +39,6 @@ namespace AppLibrary.Connections
 
 
 
-                return model;
-
             }
 
         }
@@ -50,7 +48,7 @@ namespace AppLibrary.Connections
         /// </summary>
         /// <param name="model"> The prize info.</param>
         /// <returns>The prize info, incuding unique identifier.</returns>
-        public PrizeModel CreatePrize(PrizeModel model)
+        public void CreatePrize(PrizeModel model)
         {
 
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
@@ -71,15 +69,12 @@ namespace AppLibrary.Connections
                 model.ID = prize.Get<int>("@ID");
 
 
-
-                return model;
-
             }
 
 
         }
 
-        public TeamModel CreateTeam(TeamModel model)
+        public void CreateTeam(TeamModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
             {
@@ -99,19 +94,18 @@ namespace AppLibrary.Connections
 
                     p = new DynamicParameters();
                     p.Add(("@TeamID"), model.ID);
-                    p.Add(("@PersonID"),tm.ID);
+                    p.Add(("@PersonID"), tm.ID);
 
                     connection.Execute("dbo.spTeamMembers_Insert", p, commandType: CommandType.StoredProcedure);
                 }
 
-                return model;
             }
         }
 
         public void CreateTournament(TournamentModel model)
         {
-         
-            
+
+
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
             {
                 connection.Open();
@@ -125,7 +119,9 @@ namespace AppLibrary.Connections
 
                 SaveTournamentRounds(connection, model);
 
-            
+                TournamentLogic.UpdateTournamentResults(model);
+
+
             }
         }
 
@@ -190,10 +186,10 @@ namespace AppLibrary.Connections
 
                     matchup.ID = p.Get<int>("@ID");
 
-                 
+
                     foreach (MatchupEntryModel entry in matchup.Entries)
                     {
-                       
+
                         p = new DynamicParameters();
 
                         p.Add("@MatchupID", matchup.ID);
@@ -429,6 +425,19 @@ namespace AppLibrary.Connections
             }
         }
 
+        public void CompleteTournament(TournamentModel model)
+        {
 
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
+            {
+                connection.Open();
+
+                var p = new DynamicParameters();
+                p.Add("@ID", model.ID);
+
+                connection.Execute("[dbo].[spTournaments_Complete]", p, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

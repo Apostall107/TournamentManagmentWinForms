@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TournamentManagementWinForms.Forms;
 
@@ -19,7 +16,7 @@ namespace TournamentManagementWinForms
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            AppLibrary.GlobalConfig.InitializeConnection(AppLibrary.DataStorageType.SQL);
+            AppLibrary.GlobalConfig.InitializeConnection(AppLibrary.DataStorageType.TextFile);
 
             Application.Run(new TournamentSelectionForm());
         }

@@ -1,13 +1,8 @@
-﻿
-using System;
+﻿using AppLibrary.Connections.TextConnectionHandler;
+using AppLibrary.Models;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AppLibrary.Connections.TextConnectionHandler;
-using AppLibrary.Models;
-using Dapper;
 
 namespace AppLibrary.Connections
 {
@@ -20,9 +15,25 @@ namespace AppLibrary.Connections
         private const string PrizesFile = "PrizeModels.csv";
         private const string PeopleFile = "PersonModels.csv";
         private const string TeamFile = "TeamModels.csv";
-        private const string  TournamentFile = "TournamentModel.csv";
-        private const string  MatchupFile = "MatchupModel.csv";
-        private const string  MatchupEntryFile = "MatchupEntryModel.csv";
+        private const string TournamentFile = "TournamentModel.csv";
+        private const string MatchupFile = "MatchupModel.csv";
+        private const string MatchupEntryFile = "MatchupEntryModel.csv";
+
+        public void CompleteTournament(TournamentModel model)
+        {
+            List<TournamentModel> tournaments = GlobalConfig.TournamentFile
+                .FullTxtFilePath()
+                .LoadFile()
+                .ConvertToTournamentModels();
+
+            tournaments.Remove(model);
+
+            tournaments.SaveToTournamentFile();
+
+
+
+            TournamentLogic.UpdateTournamentResults(model);
+        }
 
         #endregion
 
@@ -30,7 +41,7 @@ namespace AppLibrary.Connections
 
 
         #region TextData Creation
-        public Models.PersonModel CreatePerson(Models.PersonModel model)
+        public void CreatePerson(PersonModel model)
         {
             int currentID = 1;
 
@@ -48,10 +59,9 @@ namespace AppLibrary.Connections
 
             person.SaveToPeopleFile(PeopleFile);
 
-            return model;
         }
 
-        public Models.PrizeModel CreatePrize(Models.PrizeModel model)
+        public void CreatePrize(Models.PrizeModel model)
         {
 
             int currentID = 1;
@@ -71,10 +81,9 @@ namespace AppLibrary.Connections
 
             prizes.SaveToPrizeFile(PrizesFile);
 
-            return model;
         }
 
-        public TeamModel CreateTeam(TeamModel model)
+        public void CreateTeam(TeamModel model)
         {
             //TODO: need to handle ID 1 team creating only.
 
@@ -95,7 +104,6 @@ namespace AppLibrary.Connections
 
             teams.SaveToTeamFile(TeamFile);
 
-            return model;
         }
 
         public void CreateTournament(TournamentModel model)
@@ -119,7 +127,7 @@ namespace AppLibrary.Connections
 
             tournaments.SaveToTournametFile(TournamentFile);
 
-            
+
         }
 
 
@@ -144,9 +152,9 @@ namespace AppLibrary.Connections
 
         public void UpdateMatchup(MatchupModel model)
         {
-            
-                model.UpdateMatchupToFile();
-            
+
+            model.UpdateMatchupToFile();
+
         }
     }
 }

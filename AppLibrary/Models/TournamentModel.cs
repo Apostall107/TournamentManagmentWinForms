@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppLibrary.Models
 {
     public class TournamentModel
     {
-
+        public event EventHandler<DateTime> OnTournamentComplete;
         public int ID { get; set; }
 
         /// <summary>
@@ -30,6 +27,12 @@ namespace AppLibrary.Models
 
 
         public List<List<MatchupModel>> Rounds { get; set; } = new List<List<MatchupModel>>();
+
+
+        public void CompleteTournament()
+        {
+            OnTournamentComplete?.Invoke(this, DateTime.Now);
+        }
 
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AppLibrary.Connections;
+﻿using AppLibrary.Connections;
 using System.Configuration;
 
 namespace AppLibrary
@@ -49,7 +48,7 @@ namespace AppLibrary
 
             }
 
-         
+
 
 
         }
@@ -62,7 +61,10 @@ namespace AppLibrary
         }
 
 
-
+        public static string AppKeyLookup(string key)
+        {
+            return ConfigurationManager.AppSettings[key];
+        }
 
     }
 }

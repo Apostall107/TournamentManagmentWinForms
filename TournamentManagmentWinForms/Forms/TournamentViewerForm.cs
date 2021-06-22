@@ -1,12 +1,9 @@
-﻿using AppLibrary.Models;
+﻿using AppLibrary;
+using AppLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TournamentManagementWinForms
@@ -16,14 +13,14 @@ namespace TournamentManagementWinForms
         private TournamentModel _Tournament;
         BindingList<int> _Rounds = new BindingList<int>();
         BindingList<MatchupModel> _SelectedMatchups = new BindingList<MatchupModel>();
-        public TournamentViewerForm(AppLibrary.Models.TournamentModel tournamentModel)
+        public TournamentViewerForm(TournamentModel tournamentModel)
         {
             InitializeComponent();
 
             _Tournament = tournamentModel;
 
-            //TODO check
-            //_Tournament.OnTournamentComplete += Tournament_OnTournamentComplete;
+
+            _Tournament.OnTournamentComplete += Tournament_OnTournamentComplete;
 
             WireUpLists();
 
@@ -53,21 +50,7 @@ namespace TournamentManagementWinForms
             Matchup_ListBox.DisplayMember = "DisplayName";
         }
 
-        //private void WireUpRoundLists()
-        //{
 
-        //    Round_DropBox.DataSource = null;
-        //    Round_DropBox.DataSource = _Rounds;
-
-
-        //}
-        //private void WireUpMatchupLists()
-        //{
-
-        //    Matchup_ListBox.DataSource = null;
-        //    Matchup_ListBox.DataSource = _SelectedMatchups;
-        //    Matchup_ListBox.DisplayMember = "DisplayName";
-        //}
         private void LoadRounds()
         {
 
@@ -96,15 +79,17 @@ namespace TournamentManagementWinForms
 
         private void LoadMatchups(int round)
         {
-            
+
             foreach (List<MatchupModel> matchups in _Tournament.Rounds)
             {
                 if (matchups.First().MatchupRound == round)
                 {
+
                     _SelectedMatchups.Clear();
+
                     foreach (MatchupModel m in matchups)
                     {
-                        if (m.Winner == null || ! Unplayed_CheckBox.Checked)
+                        if (m.Winner == null || !Unplayed_CheckBox.Checked)
                         {
                             _SelectedMatchups.Add(m);
                         }
@@ -174,7 +159,7 @@ namespace TournamentManagementWinForms
         private void Matchup_ListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadMatchup((MatchupModel)Matchup_ListBox.SelectedItem);
-        } 
+        }
 
 
         private void Unplayed_CheckBox_CheckedChanged(object sender, EventArgs e)
@@ -187,25 +172,25 @@ namespace TournamentManagementWinForms
         {
             string output = "";
 
-            double teamOneScore = 0;
-            double teamTwoScore = 0;
+            double firstTeamScore = 0;
+            double secondTeamScore = 0;
 
-            bool scoreOneValid = double.TryParse(FirstTeamScore_TextBox.Text, out teamOneScore);
-            bool scoreTwoValid = double.TryParse(SecondTeamScore_TextBox.Text, out teamTwoScore);
+            bool firstScoreValid = double.TryParse(FirstTeamScore_TextBox.Text, out firstTeamScore);
+            bool secindScoreValid = double.TryParse(SecondTeamScore_TextBox.Text, out secondTeamScore);
 
-            if (!scoreOneValid)
+            if (!firstScoreValid)
             {
                 output = "The first team score  value is not a valid .";
             }
-            else if (!scoreTwoValid)
+            else if (!secindScoreValid)
             {
                 output = "The second team score value is not a valid .";
             }
-            else if (teamOneScore == 0 && teamTwoScore == 0)
+            else if (firstTeamScore == 0 && secondTeamScore == 0)
             {
                 output = "You did not enter a score for either team.";
             }
-            else if (teamOneScore == teamTwoScore)
+            else if (firstTeamScore == secondTeamScore)
             {
                 output = "We do not allow ties in this application.";
             }
@@ -226,8 +211,8 @@ namespace TournamentManagementWinForms
             }
 
             MatchupModel mModel = (MatchupModel)Matchup_ListBox.SelectedItem;
-            double teamOneScore = 0;
-            double teamTwoScore = 0;
+            double firstTeamScore = 0;
+            double secondTeamScore = 0;
 
             for (int i = 0; i < mModel.Entries.Count; i++)
             {
@@ -235,11 +220,11 @@ namespace TournamentManagementWinForms
                 {
                     if (mModel.Entries[0].TeamCompeting != null)
                     {
-                        bool scoreValid = double.TryParse(FirstTeamScore_TextBox.Text, out teamOneScore);
+                        bool scoreValid = double.TryParse(FirstTeamScore_TextBox.Text, out firstTeamScore);
 
                         if (scoreValid)
                         {
-                            mModel.Entries[0].Score = teamOneScore;
+                            mModel.Entries[0].Score = firstTeamScore;
                         }
                         else
                         {
@@ -253,11 +238,11 @@ namespace TournamentManagementWinForms
                 {
                     if (mModel.Entries[1].TeamCompeting != null)
                     {
-                        bool scoreValid = double.TryParse(SecondTeamScore_TextBox.Text, out teamTwoScore);
+                        bool scoreValid = double.TryParse(SecondTeamScore_TextBox.Text, out secondTeamScore);
 
                         if (scoreValid)
                         {
-                            mModel.Entries[1].Score = teamTwoScore;
+                            mModel.Entries[1].Score = secondTeamScore;
                         }
                         else
                         {
@@ -268,10 +253,19 @@ namespace TournamentManagementWinForms
                 }
             }
 
-        
+            try
+            {
+                TournamentLogic.UpdateTournamentResults(_Tournament);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"The application had the following error: { ex.Message }");
+                return;
+            }
+
 
             LoadMatchups((int)Round_DropBox.SelectedItem);
-            
+
         }
 
 

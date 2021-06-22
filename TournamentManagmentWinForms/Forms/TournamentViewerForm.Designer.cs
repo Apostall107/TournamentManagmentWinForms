@@ -179,9 +179,9 @@ namespace TournamentManagementWinForms
             // 
             this.Matchup_ListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Matchup_ListBox.FormattingEnabled = true;
-            this.Matchup_ListBox.Location = new System.Drawing.Point(453, 17);
+            this.Matchup_ListBox.Location = new System.Drawing.Point(453, 61);
             this.Matchup_ListBox.Name = "Matchup_ListBox";
-            this.Matchup_ListBox.Size = new System.Drawing.Size(280, 420);
+            this.Matchup_ListBox.Size = new System.Drawing.Size(280, 376);
             this.Matchup_ListBox.TabIndex = 13;
             this.Matchup_ListBox.SelectedIndexChanged += new System.EventHandler(this.Matchup_ListBox_SelectedIndexChanged);
             // 
