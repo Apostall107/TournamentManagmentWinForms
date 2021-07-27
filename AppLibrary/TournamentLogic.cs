@@ -98,14 +98,14 @@ namespace AppLibrary
                 body.AppendLine();
                 body.AppendLine();
                 body.AppendLine("Have a great time!");
-                body.AppendLine("~Tournament Tracker");
+                body.AppendLine("~Tournament manager");
             }
             else
             {
-                subject = "You have a bye week this round";
+                subject = "You have a skip week this round";
 
                 body.AppendLine("Enjoy your round off!");
-                body.AppendLine("~Tournament Tracker");
+                body.AppendLine("~Tournament manager");
             }
 
             toAddress = p.Email;

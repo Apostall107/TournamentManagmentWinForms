@@ -201,7 +201,6 @@ namespace AppLibrary.Connections.TextConnectionHandler
 
             //TODO check and fix all
             // Id = 0, TeamCompeting = 1, Score = 2, ParentMatchup = 3
-
             List<MatchupEntryModel> output = new List<MatchupEntryModel>();
 
             foreach (string line in lines)
